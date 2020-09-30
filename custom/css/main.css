@@ -19,7 +19,7 @@ nav {
 
 body {
 	background-color: var(--background-primary);
-	font-family: var(--paragraph-font);
+	font-family: var(--paragraph-font) !important;
 }
 
 .content {
