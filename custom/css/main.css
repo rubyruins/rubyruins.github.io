@@ -22,6 +22,10 @@ body {
 	font-family: var(--paragraph-font) !important;
 }
 
+.hide-space {
+	display: none;
+}
+
 .content {
 	margin: 5rem 5rem 0 5rem;	
 	padding-left: 5rem;
@@ -39,7 +43,7 @@ body {
 }
 
 .top-heading {
-	font-size: 4rem;
+	font-size: 3rem;
 	color: var(--font-primary);
 }
 
@@ -178,8 +182,11 @@ strong {
 	body {
 	  background-color: var(--background-primary);
 	}
+	.hide-space {
+		display: block;
+	}
 	.section {
-		padding: 3rem;
+		padding: 1rem;
 		margin: 0.5rem;
 	}
 	.content {
@@ -193,6 +200,9 @@ strong {
 	body {
 	  background-color: var(--background-primary);
 	}
+	.hide-space {
+		display: block;
+	}
 	.section {
 		padding: 2rem;
 		margin: 1rem;
@@ -203,13 +213,12 @@ strong {
 		padding-right: 1rem;
 	}
 	.top-heading {
-		font-size: 1.5rem;
+		font-size: 2rem;
 		color: var(--font-primary);
 	}
 	.main-content {
-		font-size: 0.75rem;
+		font-size: 0.85rem;
 	}
-	
 }
 
 ::-webkit-scrollbar {
