@@ -1,17 +1,14 @@
 nav {
 	background-color: var(--background-primary);
 	color: var(--font-secondary);	
-	margin: 0 5rem 0 5rem;	
-	padding-left: 5rem;
-	padding-right: 5rem;
 }
 
 .navbar-brand, .nav-link {
 	color: var(--font-primary) !important;
-	font-family: 'Poppins', sans-serif;
+	font-family: var(--headings-font);;
 }
 
-.nav-link:hover {
+.navbar-brand:hover, .nav-link:hover {
 	color: var(--font-primary) !important;
 	font-weight: bold;
 }
@@ -22,7 +19,7 @@ nav {
 
 body {
 	background-color: var(--background-primary);
-	font-family: 'Roboto Mono', monospace !important;
+	font-family: var(--paragraph-font);
 }
 
 .content {
@@ -37,7 +34,7 @@ body {
 }
 
 .heading {
-	font-family: 'Poppins', sans-serif;
+	font-family: var(--headings-font);;
 	font-weight: bold;
 }
 
