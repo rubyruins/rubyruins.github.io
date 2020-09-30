@@ -112,6 +112,27 @@ a, a:hover {
     color: #fff;
 }
 
+button.button {
+	background-color: transparent;
+	border: none;
+	border-radius: 5px;
+	margin: 0.2rem;
+	margin-left: 0;
+	padding: 0.4rem;
+	border: 0.1rem solid var(--font-primary);
+	border-radius: 0.25rem;
+	font-size: 0.85rem;
+	color: var(--font-primary);
+	display: inline-block;
+}
+
+button.button:hover {
+	background-color: var(--color-two);
+	color: var(--background-primary);
+	cursor: pointer;
+	border: 0.1rem solid var(--color-two);
+}
+
 .color-one {
 	-webkit-box-shadow: inset 0 -3px 0 var(--color-one);
     box-shadow: inset 0 -3px 0 var(--color-one);
