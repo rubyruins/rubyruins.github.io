@@ -132,7 +132,7 @@ button.button:hover {
 .flip-card {
 	background-color: transparent;
 	width: 300px;
-	height: 200px;
+	height: 10rem;
 	perspective: 1000px; /* Remove this if you don't want the 3D effect */
 }
 
@@ -237,6 +237,12 @@ strong {
 	line-height: normal;
 }
 
+@media only screen and (min-width: 992px) and (max-width: 1200px){
+	.flip-card {
+		height: 15rem;
+	}
+}
+
 @media screen and (max-width: 768px) {
 	body {
 		background-color: var(--background-primary);
@@ -245,11 +251,11 @@ strong {
 		display: block;
 	}
 	.section {
-		padding: 1rem;
+		padding: 0.5rem;
 		margin: 0.5rem;
 	}
 	.content {
-		margin: 5rem 3rem 0 3rem;	
+		margin: 3rem 3rem 0 3rem;	
 		padding-left: 3rem;
 		padding-right: 3rem;
 	}
@@ -263,11 +269,11 @@ strong {
 		display: block;
 	}
 	.section {
-		padding: 2rem;
+		padding: 1rem;
 		margin: 1rem;
 	}
 	.content {
-		margin: 5rem 1rem 0 1rem;	
+		margin: 3rem 1rem 0 1rem;	
 		padding-left: 1rem;
 		padding-right: 1rem;
 	}
@@ -277,6 +283,9 @@ strong {
 	}
 	.main-content {
 		font-size: 0.85rem;
+	}
+	.flip-card {
+		height: 8rem;
 	}
 }
 
