@@ -6,11 +6,21 @@ nav {
 .navbar-brand, .nav-link {
 	color: var(--font-primary) !important;
 	font-family: var(--headings-font);
-	font-weight: bold;
+	font-size: 0.9rem;
+	/* font-weight: bold; */
+}
+
+nav i {
+	font-size: 1.1rem !important;
 }
 
 .navbar-toggler {
 	border-color: rgba(0,0,0,0) !important;
+}
+
+.floatingNav {
+	border-radius: 2px;
+	box-shadow: 0px 1px 15px var(--background-secondary);
 }
 
 body {
@@ -34,7 +44,7 @@ body {
 }
 
 .heading {
-	font-family: var(--headings-font);;
+	font-family: var(--paragraph-font);;
 	font-weight: bold;
 }
 
