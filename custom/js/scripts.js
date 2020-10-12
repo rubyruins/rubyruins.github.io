@@ -41,8 +41,6 @@
 				document.documentElement.removeAttribute("data-theme");
 			}
 		});
-
-		// smooth scroll
 		
 		// initialise isotope
 		var iso = new Isotope( '.isotopeGrid', {
