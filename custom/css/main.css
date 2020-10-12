@@ -35,7 +35,7 @@ body {
 }
 
 .content {
-	margin: 3rem 3rem 0 3rem;	
+	margin: 7.5rem 3rem 0 3rem;	
 	padding-left: 4rem;
 	padding-right: 4rem;
 	/* background-color: orange; */
@@ -228,7 +228,7 @@ strong {
 		margin: 0.5rem;
 	}
 	.content {
-		margin: 3rem 3rem 0 3rem;	
+		margin: 5rem 3rem 0 3rem;	
 		padding-left: 3rem;
 		padding-right: 3rem;
 	}
@@ -252,7 +252,7 @@ strong {
 		margin: 0.5rem;
 	}
 	.content {
-		margin: 3rem 3rem 0 3rem;	
+		margin: 5rem 3rem 0 3rem;	
 		padding-left: 3rem;
 		padding-right: 3rem;
 	}
@@ -273,7 +273,7 @@ strong {
 		margin: 1rem;
 	}
 	.content {
-		margin: 3rem 1rem 0 1rem;	
+		margin: 5rem 1rem 0 1rem;	
 		padding-left: 1rem;
 		padding-right: 1rem;
 	}
