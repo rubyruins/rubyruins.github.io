@@ -27,7 +27,6 @@ nav i {
 body {
 	background-color: var(--background-primary);
 	font-family: var(--paragraph-font) !important;
-	/* background-color: red; */
 }
 
 .hide-space {
@@ -38,7 +37,6 @@ body {
 	margin: 7.5rem 3rem 0 3rem;	
 	padding-left: 4rem;
 	padding-right: 4rem;
-	/* background-color: orange; */
 	background-color: var(--background-primary);
 }
 
@@ -69,14 +67,13 @@ body {
 .section {
 	padding: 3rem 3rem 1rem 3rem;;
 	margin: 0.5rem;
-	/* background-color: yellow; */
 	background-color: var(--background-primary);
 }
 
 .progress {
 	height: 0.25rem;
 	margin-bottom: 0.75rem;
-	background-color: var(--font-secondary);
+	background-color: var(--background-secondary);
 }
 
 .progress-bar {
@@ -145,15 +142,49 @@ button.button:hover {
 
 .element-item {
 	width: 33%;
-	/* background-color: red; */
 }
 
 .custom-card {
 	background-color: var(--background-primary);
-	padding: 1rem;
+	padding: 1.5rem;
 	margin-bottom: 1rem;
 	box-shadow: 10px 10px 30px var(--background-secondary);
-	min-height: 17.5rem;
+	min-height: 15rem;
+}
+
+@keyframes shiftcard {
+	0% {
+		transform: translateX(0px);
+		transform: translateY(0px);
+	}
+	50% {
+		transform: translateX(5px);
+		transform: translateY(-5px);
+	}
+	100% {
+		transform: translateX(0px);
+		transform: translateY(0px);
+	}
+  }
+
+.custom-card:hover {
+	animation: shiftcard 0.5s ease-out;
+}
+
+.custom-card i {
+	color: var(--font-secondary);
+}
+
+.custom-tag {
+	color: var(--font-secondary);
+	font-size: 0.8rem;
+	margin-right: 0.5rem;
+	display: inline-block;
+}
+
+.custom-tag:hover {
+	cursor: pointer;
+	color: var(--color-one);
 }
 
 .color-one {
@@ -206,6 +237,11 @@ button.button:hover {
 strong {
 	color: var(--font-primary);
 	font-weight: bold !important;
+}
+
+footer {
+	min-height: 15rem !important;
+	vertical-align: middle;
 }
 
 .footer-copyright {
