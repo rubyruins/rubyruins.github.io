@@ -114,7 +114,7 @@ nav i {
 		transform: translateX(0px);
 		transform: translateY(0px);
 	}
-  }
+}
 
 .custom-card:hover {
 	animation: shiftcard 0.5s ease-out;
@@ -158,7 +158,7 @@ nav i {
 /* footer */
 
 footer {
-	min-height: 15rem !important;
+	min-height: 10rem !important;
 	vertical-align: middle;
 }
 
@@ -322,9 +322,9 @@ button.button:hover {
 	color: var(--color-one);
 }
 
-.fa-github:hover, .fa-instagram:hover, .fa-linkedin:hover {
+/* .fa-github:hover, .fa-instagram:hover, .fa-linkedin:hover {
 	color: var(--color-one);
-}
+} */
 
 .btn, .btn:hover, .btn-link, .btn-link:hover {
 	text-decoration: none !important;
