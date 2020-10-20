@@ -10,10 +10,13 @@
 			typeSpeed:90,backDelay:700,contentType:"html",loop:!0,resetCallback:function(){newTyped()}}),$(".reset").click(function(){$("#typed").typed("reset")}
 		)});
 
+
 		// Add minus icon for collapse element which is open by default
 		$(".collapse.show").each(function(){
 			$(this).prev(".collapse-heading").find(".fas").addClass("fa-angle-up").removeClass("fa-angle-down");
 		});		
+		
+		
 		// Toggle plus minus icon on show hide of collapse element
 		$(".collapse").on('show.bs.collapse', function(){
 			$(this).prev(".collapse-heading").find(".fas").removeClass("fa-angle-down").addClass("fa-angle-up");
@@ -21,34 +24,53 @@
 			$(this).prev(".collapse-heading").find(".fas").removeClass("fa-angle-up").addClass("fa-angle-down");
 		});
 
+
 		// toggle themes, navbar icons and charts
+		var storedTheme = localStorage.getItem("data-theme");
+		if(storedTheme === "dark"){
+			applyDark();
+		} else if ((storedTheme === "light") || (!storedTheme)) {
+			applyLight();
+		}
+
+		function applyLight() {
+			$(document).find(".toggler").find(".far").addClass("fa-sun").removeClass("fa-moon");
+			$(document).find(".navbar").addClass("navbar-light").removeClass("navbar-dark");
+			$(document).find(".github").attr("src", "https://ghchart.rshah.org/9E2AD0/rubyruins");
+			document.documentElement.setAttribute("data-theme", "light");
+			localStorage.setItem("data-theme", "light");
+		}
+
+		function applyDark() {
+			$(document).find(".toggler").find(".far").removeClass("fa-sun").addClass("fa-moon");
+			$(document).find(".navbar").removeClass("navbar-light").addClass("navbar-dark");
+			$(document).find(".github").attr("src", "https://ghchart.rshah.org/2977B8/rubyruins");
+			document.documentElement.setAttribute("data-theme", "dark");
+			localStorage.setItem("data-theme", "dark");
+		}
+
 		$(".toggler").click(function(){
-			$(this).find(".far").toggleClass("fa-sun").toggleClass("fa-moon");
-			$(document).find(".navbar").toggleClass("navbar-light").toggleClass("navbar-dark");
 			var theme = document.documentElement.getAttribute('data-theme');
 			console.log(theme);
-			if (theme) {
-				$(document).find(".waka").empty().append('<figure><embed src="https://wakatime.com/share/@73a28611-63aa-430b-ac34-67ff9da9d32f/f57f3bc7-3c85-4686-a637-7c39d74c3f3c.svg"></embed></figure>');
-				$(document).find(".github").empty().append('<img src="https://ghchart.rshah.org/9E2AD0/rubyruins" alt="Github"></img>')
+			if (theme === "dark") {
+				applyLight();
 			} else {
-				$(document).find(".waka").empty().append('<figure><embed src="https://wakatime.com/share/@73a28611-63aa-430b-ac34-67ff9da9d32f/a0acf27e-6ddd-4129-8c6f-dbd1d1d3b6b1.svg"></embed></figure>');
-				$(document).find(".github").empty().append('<img src="https://ghchart.rshah.org/2977B8/rubyruins" alt="Github"></img>')
-			}
-			if (!theme) {
-				document.documentElement.setAttribute("data-theme", "dark");
-			} else {
-				console.log("should be set to null");
-				document.documentElement.removeAttribute("data-theme");
+				applyDark();
 			}
 		});
 		
+
 		// initialise isotope
 		var iso = new Isotope( '.isotopeGrid', {
 			itemSelector: '.element-item',
 			layoutMode: 'fitRows'
 		});
+
+
 		// filter functions
 		var filterFns = {};
+
+
 		// bind filter button click
 		var filtersElem = document.querySelector('.filters-button-group');
 		filtersElem.addEventListener( 'click', function( event ) {
@@ -62,6 +84,7 @@
 			iso.arrange({ filter: filterValue });
 		});
 		
+
 		// change is-checked class on buttons
 		var buttonGroups = document.querySelectorAll('.button-group');
 		for ( var i=0, len = buttonGroups.length; i < len; i++ ) {
@@ -70,9 +93,10 @@
 		}
 	});
 
+
 	// floating navbar
 	$(window).scroll(function() {
-		if ($(window).scrollTop() > 10) {
+		if ($(window).scrollTop() > 100) {
 			$('nav').addClass('floatingNav', 1000);
 		} else {
 			$('nav').removeClass('floatingNav', 1000);

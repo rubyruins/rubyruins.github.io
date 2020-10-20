@@ -21,7 +21,7 @@ body {
 /* headings */
 
 .heading {
-	font-family: var(--paragraph-font);;
+	font-family: var(--headings-font);
 	font-weight: bold;
 }
 
@@ -54,7 +54,7 @@ nav {
 
 .navbar-brand, .nav-link {
 	color: var(--font-primary) !important;
-	font-family: var(--headings-font);
+	font-family: var(--headings-font) !important;
 	font-size: 0.9rem;
 }
 
@@ -131,7 +131,7 @@ nav i {
 	padding: 0.25rem;
 	border: 0.1rem solid var(--font-primary);
 	border-radius: 0.25rem;
-	font-size: 0.85rem;
+	font-size: 0.95rem;
 	color: var(--font-primary);
 	display: inline-block;
 }
@@ -259,9 +259,9 @@ a, a:hover {
 	text-decoration: none;
 }
 
-.link:hover {
+/* .link:hover {
 	color: #fff;
-}
+} */
 
 button.button {
 	background-color: var(--background-primary);
