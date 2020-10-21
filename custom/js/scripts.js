@@ -74,23 +74,25 @@
 		// bind filter button click
 		var filtersElem = document.querySelector('.filters-button-group');
 		filtersElem.addEventListener( 'click', function( event ) {
-			// only work with buttons
 			if ( !matchesSelector( event.target, 'button' ) ) {
 				return;
 			}
 			var filterValue = event.target.getAttribute('data-filter');
 			// use matching filter function
+			// change classes on clicking the button
 			filterValue = filterFns[ filterValue ] || filterValue;
 			iso.arrange({ filter: filterValue });
+			var allButtons = $(document).find('.filter-buttons');
+			for (var i = 0; i < allButtons.length; i++) {
+				if (allButtons[i].getAttribute("data-filter") === filterValue) {
+					$(allButtons[i]).addClass("filter-buttons-click");
+					$(allButtons[i]).addClass("is-checked");
+				} else {
+					$(allButtons[i]).removeClass("filter-buttons-click");
+					$(allButtons[i]).removeClass("is-checked");
+				}
+			}
 		});
-		
-
-		// change is-checked class on buttons
-		var buttonGroups = document.querySelectorAll('.button-group');
-		for ( var i=0, len = buttonGroups.length; i < len; i++ ) {
-			var buttonGroup = buttonGroups[i];
-			radioButtonGroup( buttonGroup );
-		}
 	});
 
 

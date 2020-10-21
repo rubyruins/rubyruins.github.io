@@ -263,7 +263,7 @@ a, a:hover {
 	color: #fff;
 } */
 
-button.button {
+.filter-buttons {
 	background-color: var(--background-primary);
 	border: none;
 	border-radius: 5px;
@@ -278,7 +278,7 @@ button.button {
 	box-shadow: 1.5px 1.5px 10px var(--background-secondary);
 }
 
-button.button:hover {
+.filter-buttons-click {
 	background-color: var(--color-one);
 	color: var(--background-primary);
 	cursor: pointer;
