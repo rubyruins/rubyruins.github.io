@@ -155,6 +155,19 @@ nav i {
 	color: var(--color-one);
 }
 
+/* charts */
+
+canvas {
+	width: 100%;
+	height: 15rem;
+	margin-top: 1rem;
+	margin-bottom: 3rem;
+}
+
+.github {
+	width: 100%;
+}
+
 /* footer */
 
 footer {
