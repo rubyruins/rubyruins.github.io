@@ -81,7 +81,7 @@ function makeActivityChart() {
 // chart 2
 function makeLanguagesChart() {
 	var languagesChart = new Chart(document.getElementById('languagesChart'), {
-		type: 'pie',
+		type: 'bar',
 		data: {
 			labels: myLanguages.languageLabels,
 			datasets: [{
@@ -94,21 +94,43 @@ function makeLanguagesChart() {
 		},
 		options: {
 			legend: {
-				display: true,
-				labels: {
-					boxWidth: 10,
-				}
-				// position: 'right'
+				display: true
 			},
 			hover: {
 				mode: 'point',
 				intersect: true
+			},
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero: true
+					},
+					scaleLabel: {
+						display: true,
+						labelString: "% used",
+					},
+					gridLines: {
+						display:false
+					},
+				}],
+				xAxes: [{
+					scaleLabel: {
+						display: true,
+						labelString: "Language",
+					},
+					gridLines: {
+						display:false
+					},
+				}]
 			},
 			title: {
 				display: true,
 				text: 'Languages used this month',
 				fontStyle: 'normal'
 			},
+			legend: {
+				display: false,
+			}
 		}
 	});
 }
