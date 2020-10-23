@@ -140,7 +140,7 @@ function makeLanguagesChart() {
 document.onreadystatechange = function() { 
 	if (document.readyState !== "complete") { 
 		document.querySelector("body").style.visibility = "hidden"; 
-		document.querySelector("#loader").style.visibility = "visible"; 
+		document.querySelector(".page-loader").style.visibility = "visible"; 
 		if (window.location.pathname === '/') {
 			Chart.defaults.global.defaultBorderColor = getComputedStyle(document.body).getPropertyValue('--color-one').trim();
 			// get activity stats
@@ -188,7 +188,7 @@ document.onreadystatechange = function() {
 			});
 		}
 	} else { 
-		document.querySelector("#loader").style.display = "none"; 
+		document.querySelector(".page-loader").style.display = "none"; 
 		document.querySelector("body").style.visibility = "visible"; 
 	} 
 }; 
