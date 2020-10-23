@@ -138,59 +138,61 @@ function makeLanguagesChart() {
 }
 
 document.onreadystatechange = function() { 
-	if (document.readyState !== "complete") { 
-		document.querySelector("body").style.visibility = "hidden"; 
-		document.querySelector(".page-loader").style.visibility = "visible"; 
-		if (window.location.pathname === '/') {
-			Chart.defaults.global.defaultBorderColor = getComputedStyle(document.body).getPropertyValue('--color-one').trim();
-			// get activity stats
-			$.ajax({
-				type: 'GET',
-				url: 'https://wakatime.com/share/@73a28611-63aa-430b-ac34-67ff9da9d32f/2b857162-c165-4543-a59c-ef903fff3b5a.json',
-				dataType: 'jsonp',
-				async: false,
-				success: function(response) {
-					console.log("a success");
-					var activityLabels = [];
-					var activityData = [];
-					for (var i = 0; i < response.data.length; i ++) {
-						activityData.push(parseFloat((response.data[i].grand_total.total_seconds/3600).toFixed(2))); 
-						var d = (new Date(response.data[i].range.date).toLocaleString().split(' ')[0]).replace(",", "");
-						d = d.split("/");
-						d = String(d[2]) + "-" + String(d[0]) + "-" + String(d[1]);
-						activityLabels.push(d);
-					}
-					myActivity.activityLabels = activityLabels;
-					myActivity.activityData = activityData;
-					console.log(myActivity);
-					makeActivityChart();
-				},
-			});
-			// get language stats
-			$.ajax({
-				type: 'GET',
-				url: 'https://wakatime.com/share/@73a28611-63aa-430b-ac34-67ff9da9d32f/d5e271f0-8ea7-4d6e-a5da-6bb2a78e3fd4.json',
-				dataType: 'jsonp',
-				async: false,
-				success: function(response) {
-					console.log("l success");
-					var languageLabels = [];
-					var languageData = [];
-					for (var i = 0; i < response.data.length; i ++) {
-						languageLabels.push(response.data[i].name); 
-						languageData.push(response.data[i].percent);
-					}
-					myLanguages.languageLabels = languageLabels;
-					myLanguages.languageData = languageData;
-					console.log(myLanguages);
-					makeLanguagesChart();
-				},
-			});
-		}
-	} else { 
-		document.querySelector(".page-loader").style.display = "none"; 
-		document.querySelector("body").style.visibility = "visible"; 
-	} 
+	if ((window.location.pathname === '/') || (window.location.pathname === '/archive')) {
+		if ((document.readyState !== "complete")) { 
+			document.querySelector("body").style.visibility = "hidden"; 
+			document.querySelector(".page-loader").style.visibility = "visible"; 
+			if (window.location.pathname === '/') {
+				Chart.defaults.global.defaultBorderColor = getComputedStyle(document.body).getPropertyValue('--color-one').trim();
+				// get activity stats
+				$.ajax({
+					type: 'GET',
+					url: 'https://wakatime.com/share/@73a28611-63aa-430b-ac34-67ff9da9d32f/2b857162-c165-4543-a59c-ef903fff3b5a.json',
+					dataType: 'jsonp',
+					async: false,
+					success: function(response) {
+						console.log("a success");
+						var activityLabels = [];
+						var activityData = [];
+						for (var i = 0; i < response.data.length; i ++) {
+							activityData.push(parseFloat((response.data[i].grand_total.total_seconds/3600).toFixed(2))); 
+							var d = (new Date(response.data[i].range.date).toLocaleString().split(' ')[0]).replace(",", "");
+							d = d.split("/");
+							d = String(d[2]) + "-" + String(d[0]) + "-" + String(d[1]);
+							activityLabels.push(d);
+						}
+						myActivity.activityLabels = activityLabels;
+						myActivity.activityData = activityData;
+						console.log(myActivity);
+						makeActivityChart();
+					},
+				});
+				// get language stats
+				$.ajax({
+					type: 'GET',
+					url: 'https://wakatime.com/share/@73a28611-63aa-430b-ac34-67ff9da9d32f/d5e271f0-8ea7-4d6e-a5da-6bb2a78e3fd4.json',
+					dataType: 'jsonp',
+					async: false,
+					success: function(response) {
+						console.log("l success");
+						var languageLabels = [];
+						var languageData = [];
+						for (var i = 0; i < response.data.length; i ++) {
+							languageLabels.push(response.data[i].name); 
+							languageData.push(response.data[i].percent);
+						}
+						myLanguages.languageLabels = languageLabels;
+						myLanguages.languageData = languageData;
+						console.log(myLanguages);
+						makeLanguagesChart();
+					},
+				});
+			}
+		} else { 
+			document.querySelector(".page-loader").style.display = "none"; 
+			document.querySelector("body").style.visibility = "visible"; 
+		} 
+	}
 }; 
 
 $(document).ready(function(){
