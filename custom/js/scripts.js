@@ -5,6 +5,123 @@
 // fetching resources for graphs when page is loading
 myActivity = {};
 myLanguages = {};
+
+// chart 1
+function makeActivityChart() {
+	console.log(myActivity["activityLabels"]);
+	console.log(myActivity.activityData);
+	console.log(myActivity);
+	console.log("hi bb");
+	var activityChart = new Chart(document.getElementById('activityChart'), {
+		type: 'line',
+		data: {
+			labels: myActivity.activityLabels,
+			datasets: [{
+				label: 'Hours spent',
+				data: myActivity.activityData,
+				backgroundColor: [
+					'transparent'
+				],
+				borderColor: [
+					getComputedStyle(document.body).getPropertyValue('--color-one')
+				],
+				borderWidth: 2.5
+			}]
+		},
+		options: {
+			hover: {
+				mode: 'point',
+				intersect: true
+			},
+			title: {
+				display: true,
+				text: 'Coding activity this week',
+				fontStyle: 'normal'
+			},
+			legend: {
+				display: false,
+			},
+			scales: {
+				xAxes: [{
+					type: 'time',
+					displayFormats: {
+						day: 'MMM D'
+					},
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: "Day of week",
+					},
+					gridLines: {
+						display:false
+					}
+				}],
+				yAxes: [{
+					ticks: {
+						beginAtZero: true,
+					},
+					display: true,
+					scaleLabel: {
+						display: true,
+						labelString: "Hours per day",
+					},
+					gridLines: {
+						display:false
+					}
+				}]
+			}
+		}
+	});
+}
+
+// chart 2
+function makeLanguagesChart() {
+	var languagesChart = new Chart(document.getElementById('languagesChart'), {
+		type: 'bar',
+		data: {
+			labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+			datasets: [{
+				label: '# of Votes',
+				data: [12, 19, 3, 5, 2, 3],
+				backgroundColor: [
+					'rgba(255, 99, 132, 0.2)',
+					'rgba(54, 162, 235, 0.2)',
+					'rgba(255, 206, 86, 0.2)',
+					'rgba(75, 192, 192, 0.2)',
+					'rgba(153, 102, 255, 0.2)',
+					'rgba(255, 159, 64, 0.2)'
+				],
+				borderColor: [
+					'rgba(255, 99, 132, 1)',
+					'rgba(54, 162, 235, 1)',
+					'rgba(255, 206, 86, 1)',
+					'rgba(75, 192, 192, 1)',
+					'rgba(153, 102, 255, 1)',
+					'rgba(255, 159, 64, 1)'
+				],
+				borderWidth: 1
+			}]
+		},
+		options: {
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero: true
+					}
+				}]
+			},
+			title: {
+				display: true,
+				text: 'Languages used this month',
+				fontStyle: 'normal'
+			},
+			legend: {
+				display: false,
+			}
+		}
+	});
+}
+
 document.onreadystatechange = function() { 
 	if (document.readyState !== "complete") { 
 		document.querySelector("body").style.visibility = "hidden"; 
@@ -15,18 +132,22 @@ document.onreadystatechange = function() {
 				type: 'GET',
 				url: 'https://wakatime.com/share/@73a28611-63aa-430b-ac34-67ff9da9d32f/2b857162-c165-4543-a59c-ef903fff3b5a.json',
 				dataType: 'jsonp',
-				async: true,
+				async: false,
 				success: function(response) {
 					console.log("a success");
 					var activityLabels = [];
 					var activityData = [];
 					for (var i = 0; i < response.data.length; i ++) {
-						activityLabels.push(parseFloat((response.data[i].grand_total.total_seconds/3600).toFixed(2))); 
-						activityData.push(new Date(response.data[i].range.date).toLocaleString().split(' ')[0]);
+						activityData.push(parseFloat((response.data[i].grand_total.total_seconds/3600).toFixed(2))); 
+						var d = (new Date(response.data[i].range.date).toLocaleString().split(' ')[0]).replace(",", "");
+						d = d.split("/");
+						d = String(d[2]) + "-" + String(d[0]) + "-" + String(d[1]);
+						activityLabels.push(d);
 					}
 					myActivity.activityLabels = activityLabels;
 					myActivity.activityData = activityData;
 					console.log(myActivity);
+					makeActivityChart();
 				},
 			});
 			// get language stats
@@ -34,7 +155,7 @@ document.onreadystatechange = function() {
 				type: 'GET',
 				url: 'https://wakatime.com/share/@73a28611-63aa-430b-ac34-67ff9da9d32f/d5e271f0-8ea7-4d6e-a5da-6bb2a78e3fd4.json',
 				dataType: 'jsonp',
-				async: true,
+				async: false,
 				success: function(response) {
 					console.log("l success");
 					var languageLabels = [];
@@ -46,6 +167,7 @@ document.onreadystatechange = function() {
 					myLanguages.languageLabels = languageLabels;
 					myLanguages.languageData = languageData;
 					console.log(myLanguages);
+					makeLanguagesChart();
 				},
 			});
 		}
@@ -117,8 +239,8 @@ $(document).ready(function(){
 			Chart.defaults.global.defaultFontColor = getComputedStyle(document.body).getPropertyValue('--font-secondary').trim();
 			Chart.defaults.global.defaultFontStyle = 'normal';
 			Chart.defaults.global.defaultBorderColor = getComputedStyle(document.body).getPropertyValue('--color-one');
-			makeActivityChart();
-			makeLanguagesChart();
+			// makeActivityChart();
+			// makeLanguagesChart();
 		}
 		
 		$(".toggler").click(function(){
@@ -151,117 +273,6 @@ $(document).ready(function(){
 			languagesChart.update();
 		});
 	
-		
-		// chart 1
-		function makeActivityChart() {
-			console.log(myActivity.activityLabels);
-			console.log(myActivity.activityData);
-			console.log(myActivity);
-			console.log("hi bb");
-			var activityChart = new Chart(document.getElementById('activityChart'), {
-				type: 'line',
-				data: {
-					labels: ["2017-08-16", "2017-08-17", "2017-08-18"],
-					datasets: [{
-						label: 'Hours per day',
-						data: [(8853.996287/3600).toFixed(2), (0).toFixed(2), (6224.196075/3600).toFixed(2)],
-						backgroundColor: [
-							'transparent'
-						],
-						borderColor: [
-							getComputedStyle(document.body).getPropertyValue('--color-one')
-						],
-						borderWidth: 2.5
-					}]
-				},
-				options: {
-					hover: {
-						mode: 'point',
-						intersect: true
-					},
-					title: {
-						display: true,
-						text: 'Coding activity this week',
-						fontStyle: 'normal'
-					},
-					legend: {
-						display: false,
-					},
-					scales: {
-						xAxes: [{
-							type: 'time',
-							displayFormats: {
-								day: 'MMM D'
-							},
-							display: true,
-							scaleLabel: {
-								display: true,
-								labelString: "Date",
-							}
-						}],
-						yAxes: [{
-							ticks: {
-								beginAtZero: true,
-							},
-							display: true,
-							scaleLabel: {
-								display: true,
-								labelString: "Page Views",
-							}
-						}]
-					}
-				}
-			});
-		}
-		
-		// chart 2
-		function makeLanguagesChart() {
-			var languagesChart = new Chart(document.getElementById('languagesChart'), {
-				type: 'bar',
-				data: {
-					labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-					datasets: [{
-						label: '# of Votes',
-						data: [12, 19, 3, 5, 2, 3],
-						backgroundColor: [
-							'rgba(255, 99, 132, 0.2)',
-							'rgba(54, 162, 235, 0.2)',
-							'rgba(255, 206, 86, 0.2)',
-							'rgba(75, 192, 192, 0.2)',
-							'rgba(153, 102, 255, 0.2)',
-							'rgba(255, 159, 64, 0.2)'
-						],
-						borderColor: [
-							'rgba(255, 99, 132, 1)',
-							'rgba(54, 162, 235, 1)',
-							'rgba(255, 206, 86, 1)',
-							'rgba(75, 192, 192, 1)',
-							'rgba(153, 102, 255, 1)',
-							'rgba(255, 159, 64, 1)'
-						],
-						borderWidth: 1
-					}]
-				},
-				options: {
-					scales: {
-						yAxes: [{
-							ticks: {
-								beginAtZero: true
-							}
-						}]
-					},
-					title: {
-						display: true,
-						text: 'Languages used this month',
-						fontStyle: 'normal'
-					},
-					legend: {
-						display: false,
-					}
-				}
-			});
-		}
-		
 		
 		// initialise isotope
 		var iso = new Isotope( '.isotopeGrid', {
