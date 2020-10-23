@@ -137,9 +137,32 @@ function makeLanguagesChart() {
 	});
 }
 
+// changing to light theme
+function applyLight() {
+	document.documentElement.setAttribute("data-theme", "light");
+	localStorage.setItem("data-theme", "light");
+	$(document).find(".toggler").find(".far").addClass("fa-sun").removeClass("fa-moon");
+	$(document).find(".navbar").addClass("navbar-light").removeClass("navbar-dark");
+}
+
+// changing to dark theme
+function applyDark() {
+	document.documentElement.setAttribute("data-theme", "dark");
+	localStorage.setItem("data-theme", "dark");
+	$(document).find(".toggler").find(".far").removeClass("fa-sun").addClass("fa-moon");
+	$(document).find(".navbar").removeClass("navbar-light").addClass("navbar-dark");
+}
+
 document.onreadystatechange = function() { 
 	if ((window.location.pathname === '/') || (window.location.pathname === '/archive')) {
 		if ((document.readyState !== "complete")) { 
+			// load previously saved theme if any
+			var storedTheme = localStorage.getItem("data-theme");
+			if(storedTheme === "dark"){
+				applyDark();
+			} else if ((storedTheme === "light") || (!storedTheme)) {
+				applyLight();
+			}
 			document.querySelector("body").style.visibility = "hidden"; 
 			document.querySelector(".page-loader").style.visibility = "visible"; 
 			if (window.location.pathname === '/') {
@@ -228,37 +251,12 @@ $(document).ready(function(){
 			$(this).prev(".collapse-heading").find(".fas").removeClass("fa-angle-up").addClass("fa-angle-down");
 		});
 		
-		
-		// toggle themes, navbar icons and charts
-		var storedTheme = localStorage.getItem("data-theme");
-		if(storedTheme === "dark"){
-			applyDark();
-		} else if ((storedTheme === "light") || (!storedTheme)) {
-			applyLight();
-		}
-		
-		function applyLight() {
-			document.documentElement.setAttribute("data-theme", "light");
-			localStorage.setItem("data-theme", "light");
-			$(document).find(".toggler").find(".far").addClass("fa-sun").removeClass("fa-moon");
-			$(document).find(".navbar").addClass("navbar-light").removeClass("navbar-dark");
-		}
-		
-		function applyDark() {
-			document.documentElement.setAttribute("data-theme", "dark");
-			localStorage.setItem("data-theme", "dark");
-			$(document).find(".toggler").find(".far").removeClass("fa-sun").addClass("fa-moon");
-			$(document).find(".navbar").removeClass("navbar-light").addClass("navbar-dark");
-		}
-		
 		// initial theme settings before toggle
 		if (window.location.pathname === '/') {
 			$(document).find(".github").attr("src", "https://ghchart.rshah.org/" + String(getComputedStyle(document.body).getPropertyValue('--color-one').replace("#", "").trim()) + "/rubyruins");
 			Chart.defaults.global.defaultFontColor = getComputedStyle(document.body).getPropertyValue('--font-secondary').trim();
 			Chart.defaults.global.defaultFontStyle = 'normal';
 			Chart.defaults.global.defaultBorderColor = getComputedStyle(document.body).getPropertyValue('--color-one').trim();
-			// makeActivityChart();
-			// makeLanguagesChart();
 		}
 		
 		$(".toggler").click(function(){
