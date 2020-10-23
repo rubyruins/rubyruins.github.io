@@ -3,8 +3,8 @@
 /* eslint-disable no-undef */
 
 // fetching resources for graphs when page is loading
-var myActivity = {};
-var myLanguages = {};
+myActivity = {};
+myLanguages = {};
 document.onreadystatechange = function() { 
 	if (document.readyState !== "complete") { 
 		document.querySelector("body").style.visibility = "hidden"; 
@@ -21,8 +21,8 @@ document.onreadystatechange = function() {
 					var activityLabels = [];
 					var activityData = [];
 					for (var i = 0; i < response.data.length; i ++) {
-						activityLabels.push(response.data[i].grand_total.digital); 
-						activityData.push(response.data[i].range.date);
+						activityLabels.push(parseFloat((response.data[i].grand_total.total_seconds/3600).toFixed(2))); 
+						activityData.push(new Date(response.data[i].range.date).toLocaleString().split(' ')[0]);
 					}
 					myActivity.activityLabels = activityLabels;
 					myActivity.activityData = activityData;
@@ -154,13 +154,17 @@ $(document).ready(function(){
 		
 		// chart 1
 		function makeActivityChart() {
+			console.log(myActivity.activityLabels);
+			console.log(myActivity.activityData);
+			console.log(myActivity);
+			console.log("hi bb");
 			var activityChart = new Chart(document.getElementById('activityChart'), {
 				type: 'line',
 				data: {
-					labels: [new Date(2017, 8, 16), new Date(2017, 8, 17), new Date(2017, 8, 18)],
+					labels: ["2017-08-16", "2017-08-17", "2017-08-18"],
 					datasets: [{
 						label: 'Hours per day',
-						data: [8853.996287, 0, 6224.196075],
+						data: [(8853.996287/3600).toFixed(2), (0).toFixed(2), (6224.196075/3600).toFixed(2)],
 						backgroundColor: [
 							'transparent'
 						],
@@ -272,26 +276,28 @@ $(document).ready(function(){
 		
 		// bind filter button click
 		var filtersElem = document.querySelector('.filters-button-group');
-		filtersElem.addEventListener( 'click', function( event ) {
-			if ( !matchesSelector( event.target, 'button' ) ) {
-				return;
-			}
-			var filterValue = event.target.getAttribute('data-filter');
-			// use matching filter function
-			// change classes on clicking the button
-			filterValue = filterFns[ filterValue ] || filterValue;
-			iso.arrange({ filter: filterValue });
-			var allButtons = $(document).find('.filter-buttons');
-			for (var i = 0; i < allButtons.length; i++) {
-				if (allButtons[i].getAttribute("data-filter") === filterValue) {
-					$(allButtons[i]).addClass("filter-buttons-click");
-					$(allButtons[i]).addClass("is-checked");
-				} else {
-					$(allButtons[i]).removeClass("filter-buttons-click");
-					$(allButtons[i]).removeClass("is-checked");
+		if (filtersElem) {
+			filtersElem.addEventListener('click', function(event) {
+				if (!matchesSelector( event.target, 'button' ) ) {
+					return;
 				}
+				var filterValue = event.target.getAttribute('data-filter');
+				// use matching filter function
+				// change classes on clicking the button
+				filterValue = filterFns[ filterValue ] || filterValue;
+				iso.arrange({ filter: filterValue });
+				var allButtons = $(document).find('.filter-buttons');
+				for (var i = 0; i < allButtons.length; i++) {
+					if (allButtons[i].getAttribute("data-filter") === filterValue) {
+						$(allButtons[i]).addClass("filter-buttons-click");
+						$(allButtons[i]).addClass("is-checked");
+					} else {
+						$(allButtons[i]).removeClass("filter-buttons-click");
+						$(allButtons[i]).removeClass("is-checked");
+					}
+				}
+			});
 			}
-		});
 	});
 	
 	
