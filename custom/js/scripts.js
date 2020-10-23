@@ -154,15 +154,15 @@ function applyDark() {
 }
 
 document.onreadystatechange = function() { 
+	// load previously saved theme if any
+	var storedTheme = localStorage.getItem("data-theme");
+	if(storedTheme === "dark"){
+		applyDark();
+	} else if ((storedTheme === "light") || (!storedTheme)) {
+		applyLight();
+	}
 	if ((window.location.pathname === '/') || (window.location.pathname === '/archive')) {
 		if ((document.readyState !== "complete")) { 
-			// load previously saved theme if any
-			var storedTheme = localStorage.getItem("data-theme");
-			if(storedTheme === "dark"){
-				applyDark();
-			} else if ((storedTheme === "light") || (!storedTheme)) {
-				applyLight();
-			}
 			document.querySelector("body").style.visibility = "hidden"; 
 			document.querySelector(".page-loader").style.visibility = "visible"; 
 			if (window.location.pathname === '/') {
