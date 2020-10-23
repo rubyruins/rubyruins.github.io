@@ -251,7 +251,16 @@ footer {
 		width: 100%;
 	}
 	canvas {
-		height: 10rem !important;
+		height: 40vh !important;
+	}
+	.github-block {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	canvas {
+		height: 30vh !important;
 	}
 }
 

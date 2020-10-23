@@ -66,7 +66,7 @@ function makeActivityChart() {
 					},
 					display: true,
 					scaleLabel: {
-						display: true,
+						display: false,
 						labelString: "Hours per day",
 					},
 					gridLines: {
@@ -81,11 +81,11 @@ function makeActivityChart() {
 // chart 2
 function makeLanguagesChart() {
 	var languagesChart = new Chart(document.getElementById('languagesChart'), {
-		type: 'pie',
+		type: 'horizontalBar',
 		data: {
 			labels: myLanguages.languageLabels,
 			datasets: [{
-				label: '%',
+				label: 'Language',
 				data: myLanguages.languageData,
 				backgroundColor: getComputedStyle(document.body).getPropertyValue('--color-one'),
 				borderColor: getComputedStyle(document.body).getPropertyValue('--color-one'),
@@ -94,15 +94,39 @@ function makeLanguagesChart() {
 		},
 		options: {
 			legend: {
-				display: true,
-				labels: {
-					boxWidth: 10,
-				}
-				// position: 'right'
+				display: true
 			},
 			hover: {
 				mode: 'point',
 				intersect: true
+			},
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero: true
+					},
+					scaleLabel: {
+						display: false,
+						labelString: "Language",
+					},
+					gridLines: {
+						display:false
+					},
+				}],
+				xAxes: [{
+					ticks: {
+						callback: function(value, index, values) {
+							return value + '%';
+						}
+					},
+					scaleLabel: {
+						display: true,
+						labelString: "Usage",
+					},
+					gridLines: {
+						display:false
+					},
+				}]
 			},
 			title: {
 				display: true,
