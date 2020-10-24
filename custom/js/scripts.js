@@ -141,7 +141,7 @@ function makeLanguagesChart() {
 function applyLight() {
 	document.documentElement.setAttribute("data-theme", "light");
 	localStorage.setItem("data-theme", "light");
-	$(document).find(".toggler").find(".far").addClass("fa-sun").removeClass("fa-moon");
+	$(document).find(".toggler").find(".fas").addClass("fa-sun").removeClass("fa-moon");
 	$(document).find(".navbar").addClass("navbar-light").removeClass("navbar-dark");
 }
 
@@ -149,7 +149,7 @@ function applyLight() {
 function applyDark() {
 	document.documentElement.setAttribute("data-theme", "dark");
 	localStorage.setItem("data-theme", "dark");
-	$(document).find(".toggler").find(".far").removeClass("fa-sun").addClass("fa-moon");
+	$(document).find(".toggler").find(".fas").removeClass("fa-sun").addClass("fa-moon");
 	$(document).find(".navbar").removeClass("navbar-light").addClass("navbar-dark");
 }
 

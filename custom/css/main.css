@@ -256,6 +256,11 @@ nav i {
 	display: none;
 }
 
+.nav-link:hover {
+	font-weight: bold;
+	cursor: pointer;
+}
+
 /* skills section */
 
 .progress {
@@ -545,8 +550,12 @@ a, a:hover {
 	color: var(--font-primary);
 }
 
-.fa-link, .fas {
+.fa-link {
 	color: var(--color-one);
+}
+
+.fas {
+	cursor: pointer;
 }
 
 /* .fa-github:hover, .fa-instagram:hover, .fa-linkedin:hover {
