@@ -348,6 +348,7 @@ canvas {
 	/* height: 10rem !important; */
 	margin-top: 1rem;
 	margin-bottom: 3rem;
+	/* background-color: red; */
 }
 
 .github {
@@ -411,9 +412,9 @@ footer {
 	.element-item {
 		width: 50%;
 	}
-	canvas {
+	/* canvas {
 		display: none;
-	}
+	} */
 	.navbar-collapse {
 		position: absolute;
 		top: 54px;
@@ -466,8 +467,14 @@ footer {
 	.element-item {
 		width: 100%;
 	}
-	canvas {
+	/* canvas {
 		display: none;
+	} */
+}
+
+@media screen and (max-width: 500px) {
+	canvas {
+		height: 10rem !important;
 	}
 }
 
@@ -550,7 +557,7 @@ a, a:hover {
 	color: var(--font-primary);
 }
 
-.fa-link {
+.fa-link, .fa-angle-down, .fa-angle-up {
 	color: var(--color-one);
 }
 

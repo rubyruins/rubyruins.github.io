@@ -94,7 +94,7 @@ function makeLanguagesChart() {
 		},
 		options: {
 			legend: {
-				display: true
+				display: false
 			},
 			hover: {
 				mode: 'point',
@@ -266,6 +266,7 @@ $(document).ready(function(){
 			Chart.defaults.global.defaultFontColor = getComputedStyle(document.body).getPropertyValue('--font-secondary').trim();
 			Chart.defaults.global.defaultFontStyle = 'normal';
 			Chart.defaults.global.defaultBorderColor = getComputedStyle(document.body).getPropertyValue('--color-one').trim();
+			Chart.defaults.global.defaultFontSize = 10;
 		}
 		
 		$(".toggler").click(function(){
