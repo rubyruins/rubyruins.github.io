@@ -138,17 +138,17 @@ function makeLanguagesChart() {
 }
 
 // changing to light theme
-function applyMorning() {
-	document.documentElement.setAttribute("data-theme", "morning");
-	localStorage.setItem("data-theme", "morning");
+function applyLight() {
+	document.documentElement.setAttribute("data-theme", "light");
+	localStorage.setItem("data-theme", "light");
 	$(document).find(".toggler").find(".fas").addClass("fa-sun").removeClass("fa-moon");
 	$(document).find(".navbar").addClass("navbar-light").removeClass("navbar-dark");
 }
 
 // changing to dark theme
-function applyNight() {
-	document.documentElement.setAttribute("data-theme", "night");
-	localStorage.setItem("data-theme", "night");
+function applyDark() {
+	document.documentElement.setAttribute("data-theme", "dark");
+	localStorage.setItem("data-theme", "dark");
 	$(document).find(".toggler").find(".fas").removeClass("fa-sun").addClass("fa-moon");
 	$(document).find(".navbar").removeClass("navbar-light").addClass("navbar-dark");
 }
@@ -156,11 +156,12 @@ function applyNight() {
 document.onreadystatechange = function() { 
 	// load previously saved theme if any
 	var storedTheme = localStorage.getItem("data-theme");
-	if(storedTheme === "night"){
-		applyNight();
-	} else if ((storedTheme === "morning") || (!storedTheme)) {
-		applyMorning();
+	if(storedTheme === "dark"){
+		applyDark();
+	} else if ((storedTheme === "light") || (!storedTheme)) {
+		applyLight();
 	}
+	console.log(storedTheme)
 	if ((window.location.pathname === '/') || (window.location.pathname === '/archive')) {
 		if ((document.readyState !== "complete")) { 
 			document.querySelector("body").style.visibility = "hidden"; 
@@ -279,10 +280,10 @@ $(document).ready(function(){
 		$(".toggler").click(function(){
 			var theme = document.documentElement.getAttribute('data-theme');
 			console.log(theme);
-			if (theme === "night") {
-				applyMorning();
+			if (theme === "dark") {
+				applyLight();
 			} else {
-				applyNight();
+				applyDark();
 			}
 			Chart.defaults.global.defaultFontColor = getComputedStyle(document.body).getPropertyValue('--font-secondary').trim();
 			
