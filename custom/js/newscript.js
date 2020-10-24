@@ -28,8 +28,7 @@ function makeActivityChart() {
 			title: {
 				display: true,
 				text: 'Coding activity this week',
-				fontStyle: 'normal',
-				padding: 20,
+				fontStyle: 'normal'
 			},
 			legend: {
 				display: false,
@@ -49,6 +48,9 @@ function makeActivityChart() {
 						callback: function(value, index, values) {
 							return String(new Date(value)).charAt(0);
 						},
+						autoSkip: false,
+						min: 7,
+						max: 7
 					},
 					display: true,
 					scaleLabel: {
@@ -96,7 +98,7 @@ function makeLanguagesChart() {
 			cutoutPercentage: 50,
 			legend: {
 				display: true,
-				position: 'right',
+				// position: 'right',
 				align: 'left'
 			},
 			hover: {
@@ -106,8 +108,7 @@ function makeLanguagesChart() {
 			title: {
 				display: true,
 				text: 'Languages used this month',
-				fontStyle: 'normal',
-				padding: 20
+				fontStyle: 'normal'
 			},
 		}
 	});

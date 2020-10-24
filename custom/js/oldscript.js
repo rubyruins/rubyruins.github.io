@@ -28,8 +28,7 @@ function makeActivityChart() {
 			title: {
 				display: true,
 				text: 'Coding activity this week',
-				fontStyle: 'normal',
-				padding: 20,
+				fontStyle: 'normal'
 			},
 			legend: {
 				display: false,
@@ -49,6 +48,9 @@ function makeActivityChart() {
 						callback: function(value, index, values) {
 							return String(new Date(value)).charAt(0);
 						},
+						autoSkip: false,
+						min: 7,
+						max: 7
 					},
 					display: true,
 					scaleLabel: {
@@ -81,33 +83,57 @@ function makeActivityChart() {
 // chart 2
 function makeLanguagesChart() {
 	var languagesChart = new Chart(document.getElementById('languagesChart'), {
-		type: 'pie',
+		type: 'horizontalBar',
 		data: {
 			labels: myLanguages.languageLabels,
 			datasets: [{
 				label: 'Language',
 				data: myLanguages.languageData,
-				backgroundColor: 'transparent',
+				backgroundColor: getComputedStyle(document.body).getPropertyValue('--color-one'),
 				borderColor: getComputedStyle(document.body).getPropertyValue('--color-one'),
 				borderWidth: 1
 			}]
 		},
 		options: {
-			cutoutPercentage: 50,
 			legend: {
-				display: true,
-				position: 'right',
-				align: 'left'
+				display: false
 			},
 			hover: {
 				mode: 'point',
 				intersect: true
 			},
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero: true
+					},
+					scaleLabel: {
+						display: false,
+						labelString: "Language",
+					},
+					gridLines: {
+						display:false
+					},
+				}],
+				xAxes: [{
+					ticks: {
+						callback: function(value, index, values) {
+							return value + '%';
+						}
+					},
+					scaleLabel: {
+						display: true,
+						labelString: "Usage",
+					},
+					gridLines: {
+						display:false
+					},
+				}]
+			},
 			title: {
 				display: true,
 				text: 'Languages used this month',
-				fontStyle: 'normal',
-				padding: 20
+				fontStyle: 'normal'
 			},
 		}
 	});
