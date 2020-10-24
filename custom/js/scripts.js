@@ -27,7 +27,7 @@ function makeActivityChart() {
 			},
 			title: {
 				display: true,
-				text: 'Coding activity this week',
+				text: 'Coding activity this week v2',
 				fontStyle: 'normal',
 				padding: 20,
 			},
@@ -49,6 +49,7 @@ function makeActivityChart() {
 						callback: function(value, index, values) {
 							return String(new Date(value)).charAt(0);
 						},
+						autoSkip: false,
 					},
 					display: true,
 					scaleLabel: {
