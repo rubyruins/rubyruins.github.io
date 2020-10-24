@@ -220,6 +220,14 @@ document.onreadystatechange = function() {
 
 $(document).ready(function(){
 	
+	// smooth scroll navbar
+	$('.nav-item a').click(function(e) {
+		var targetHref = $(this).attr('href');
+		$('html, body').animate({
+			scrollTop: $(targetHref).offset().top
+		}, 500);
+		e.preventDefault();
+	});
 	
 	// typing effect
 	function newTyped(){}$(function(){
@@ -288,7 +296,7 @@ $(document).ready(function(){
 			activityChart.update();
 			languagesChart.update();
 		});
-	
+		
 		
 		// initialise isotope
 		var iso = new Isotope( '.isotopeGrid', {
@@ -296,7 +304,7 @@ $(document).ready(function(){
 			layoutMode: 'fitRows'
 		});
 		
-
+		
 		// filter functions
 		var filterFns = {};
 		
@@ -324,7 +332,7 @@ $(document).ready(function(){
 					}
 				}
 			});
-			}
+		}
 	});
 	
 	
