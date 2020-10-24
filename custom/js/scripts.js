@@ -224,8 +224,9 @@ $(document).ready(function(){
 	$('.nav-item a').click(function(e) {
 		var targetHref = $(this).attr('href');
 		$('html, body').animate({
-			scrollTop: $(targetHref).offset().top
+			scrollTop: parseInt($(targetHref).offset().top - 50)
 		}, 500);
+		console.log($(targetHref).offset().top);
 		e.preventDefault();
 	});
 	
