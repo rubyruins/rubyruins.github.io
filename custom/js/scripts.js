@@ -13,7 +13,7 @@ function makeActivityChart() {
 		data: {
 			labels: myActivity.activityLabels,
 			datasets: [{
-				label: 'Hours spent v2',
+				label: 'Hours spent',
 				data: myActivity.activityData,
 				backgroundColor: 'transparent',
 				borderColor: getComputedStyle(document.body).getPropertyValue('--color-one'),
@@ -27,7 +27,7 @@ function makeActivityChart() {
 			},
 			title: {
 				display: true,
-				text: 'Coding activity this week',
+				text: 'Coding activity this week v2',
 				fontStyle: 'normal'
 			},
 			legend: {
