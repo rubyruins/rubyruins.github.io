@@ -21,6 +21,9 @@ function makeActivityChart() {
 			}]
 		},
 		options: {
+			tooltips: {
+				displayColors: false
+			},
 			hover: {
 				mode: 'point',
 				intersect: true
@@ -81,10 +84,15 @@ function makeLanguagesChart() {
 				data: myLanguages.languageData,
 				backgroundColor: getComputedStyle(document.body).getPropertyValue('--color-one'),
 				borderColor: getComputedStyle(document.body).getPropertyValue('--color-one'),
-				borderWidth: 1
+				borderWidth: 1,
+				hoverBackgroundColor: getComputedStyle(document.body).getPropertyValue('--color-one').trim(),
+				hoverBorderColor: getComputedStyle(document.body).getPropertyValue('--color-one').trim()
 			}]
 		},
 		options: {
+			tooltips: {
+				displayColors: false
+			},
 			legend: {
 				display: false
 			},
