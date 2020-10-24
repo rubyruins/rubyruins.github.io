@@ -9,18 +9,14 @@ myLanguages = {};
 // chart 1
 function makeActivityChart() {
 	var activityChart = new Chart(document.getElementById('activityChart'), {
-		type: 'line',
+		type: 'bar',
 		data: {
 			labels: myActivity.activityLabels,
 			datasets: [{
 				label: 'Hours spent',
 				data: myActivity.activityData,
-				backgroundColor: [
-					'transparent'
-				],
-				borderColor: [
-					getComputedStyle(document.body).getPropertyValue('--color-one')
-				],
+				backgroundColor: getComputedStyle(document.body).getPropertyValue('--color-one'),
+				borderColor: getComputedStyle(document.body).getPropertyValue('--color-one'),
 				borderWidth: 2.5
 			}]
 		},
