@@ -27,12 +27,13 @@ function makeActivityChart() {
 			},
 			title: {
 				display: true,
-				text: 'Coding activity this week v3',
+				text: 'Coding activity this week',
 				fontStyle: 'normal'
 			},
 			legend: {
 				display: false,
 			},
+			scaleShowValues: true,
 			scales: {
 				xAxes: [{
 					bounds: 'ticks',
@@ -61,6 +62,7 @@ function makeActivityChart() {
 				yAxes: [{
 					ticks: {
 						beginAtZero: true,
+						autoSkip: false,
 					},
 					display: true,
 					scaleLabel: {
