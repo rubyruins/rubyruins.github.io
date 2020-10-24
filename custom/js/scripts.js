@@ -27,7 +27,7 @@ function makeActivityChart() {
 			},
 			title: {
 				display: true,
-				text: 'Coding activity this week v2',
+				text: 'Coding activity this week v3',
 				fontStyle: 'normal',
 				padding: 20,
 			},
@@ -38,17 +38,7 @@ function makeActivityChart() {
 			scales: {
 				xAxes: [{
 					bounds: 'ticks',
-					type: 'time',
-					time: {
-						unit: 'day',
-					},
-					displayFormats: {
-						day: 'MMM D'
-					},
 					ticks: {
-						callback: function(value, index, values) {
-							return String(new Date(value)).charAt(0);
-						},
 						autoSkip: false,
 					},
 					display: true,
@@ -159,6 +149,7 @@ document.onreadystatechange = function() {
 							var d = (new Date(response.data[i].range.date).toLocaleString().split(' ')[0]).replace(",", "");
 							d = d.split("/");
 							d = String(d[2]) + "-" + String(d[0]) + "-" + String(d[1]);
+							d = String(new Date(d)).charAt(0) + String(new Date(d)).charAt(1) + String(new Date(d)).charAt(2)
 							activityLabels.push(d);
 						}
 						myActivity.activityLabels = activityLabels;
