@@ -158,7 +158,7 @@ document.onreadystatechange = function() {
 	var storedTheme = localStorage.getItem("data-theme");
 	if(storedTheme === "night"){
 		applyNight();
-	} else if ((storedTheme === "morning") || (!storedTheme)) {
+	} else if ((storedTheme === "morning") || (!storedTheme) || (storedTheme === "light")) {
 		applyMorning();
 	}
 	console.log(storedTheme)
@@ -183,7 +183,7 @@ document.onreadystatechange = function() {
 							var d = (new Date(response.data[i].range.date).toLocaleString().split(' ')[0]).replace(",", "");
 							d = d.split("/");
 							d = String(d[2]) + "-" + String(d[0]) + "-" + String(d[1]);
-							d = String(new Date(d)).charAt(0) + String(new Date(d)).charAt(1) + String(new Date(d)).charAt(2)
+							d = String(new Date(d)).charAt(0);
 							activityLabels.push(d);
 						}
 						myActivity.activityLabels = activityLabels;
