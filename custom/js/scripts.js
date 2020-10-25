@@ -183,7 +183,7 @@ document.onreadystatechange = function() {
 							var d = (new Date(response.data[i].range.date).toLocaleString().split(' ')[0]).replace(",", "");
 							d = d.split("/");
 							d = String(d[2]) + "-" + String(d[0]) + "-" + String(d[1]);
-							d = String(new Date(d)).charAt(0);
+							// d = String(new Date(d)).charAt(0);
 							activityLabels.push(d);
 						}
 						myActivity.activityLabels = activityLabels;
