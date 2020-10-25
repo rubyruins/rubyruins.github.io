@@ -82,30 +82,41 @@ function makeLanguagesChart() {
 }
 
 // changing to light theme
-function applyMorning() {
-	document.documentElement.setAttribute("data-theme", "morning");
-	localStorage.setItem("data-theme", "morning");
-	$(document).find(".toggler").find(".fas").addClass("fa-sun").removeClass("fa-moon");
-	$(document).find(".navbar").addClass("navbar-light").removeClass("navbar-dark");
+function applyDay() {
+	document.documentElement.setAttribute("data-theme", "day");
+	localStorage.setItem("data-theme", "day");
+	$(document).find(".toggler").find(".far").removeClass("fa-star").removeClass("fa-moon").addClass("fa-sun");
+	$(document).find(".navbar").removeClass("navbar-dark").addClass("navbar-light");
 }
 
 // changing to dark theme
 function applyNight() {
 	document.documentElement.setAttribute("data-theme", "night");
 	localStorage.setItem("data-theme", "night");
-	$(document).find(".toggler").find(".fas").removeClass("fa-sun").addClass("fa-moon");
+	$(document).find(".toggler").find(".far").removeClass("fa-sun").removeClass("fa-star").addClass("fa-moon");
 	$(document).find(".navbar").removeClass("navbar-light").addClass("navbar-dark");
+}
+
+// changing to star theme
+function applyStar() {
+	document.documentElement.setAttribute("data-theme", "star");
+	localStorage.setItem("data-theme", "star");
+	$(document).find(".toggler").find(".far").removeClass("fa-moon").removeClass("fa-sun").addClass("fa-star");
+	// $(document).find(".navbar").removeClass("navbar-light").addClass("navbar-dark");
 }
 
 document.onreadystatechange = function() { 
 	// load previously saved theme if any
 	var storedTheme = localStorage.getItem("data-theme");
-	if(storedTheme === "night"){
+	if ((storedTheme === "day") || (!storedTheme) || (storedTheme === "light")) {
+		applyDay();
+	} else if (storedTheme === "night") {
 		applyNight();
-	} else if ((storedTheme === "morning") || (!storedTheme) || (storedTheme === "light")) {
-		applyMorning();
+	} else if (storedTheme === "star") {
+		applyStar();
 	}
-	console.log(storedTheme)
+	console.log("applied theme");
+	console.log(storedTheme);
 	if ((window.location.pathname === '/') || (window.location.pathname === '/archive')) {
 		if ((document.readyState !== "complete")) { 
 			document.querySelector("body").style.visibility = "hidden"; 
@@ -177,20 +188,19 @@ $(document).ready(function(){
 		
 		// Toggle icon for collapse element which is open by default
 		$(".collapse.show").each(function(){
-			$(this).prev(".collapse-heading").find(".fas").addClass("fa-angle-up").removeClass("fa-angle-down");
+			$(this).prev(".collapse-heading").find(".far").addClass("fa-angle-up").removeClass("fa-angle-down");
 		});		
 		
 		
 		// Toggle plus minus icon on show hide of collapse element
 		$(".collapse").on('show.bs.collapse', function(){
-			$(this).prev(".collapse-heading").find(".fas").removeClass("fa-angle-down").addClass("fa-angle-up");
+			$(this).prev(".collapse-heading").find(".far").removeClass("fa-angle-down").addClass("fa-angle-up");
 		}).on('hide.bs.collapse', function(){
-			$(this).prev(".collapse-heading").find(".fas").removeClass("fa-angle-up").addClass("fa-angle-down");
+			$(this).prev(".collapse-heading").find(".far").removeClass("fa-angle-up").addClass("fa-angle-down");
 		});
 		
 		// initial theme settings before toggle
 		if (window.location.pathname === '/') {
-			// $(document).find(".github").attr("src", "https://ghchart.rshah.org/" + String(getComputedStyle(document.body).getPropertyValue('--color-one').replace("#", "").trim()) + "/rubyruins");
 			Chart.defaults.global.defaultFontColor = getComputedStyle(document.body).getPropertyValue('--font-secondary').trim();
 			Chart.defaults.global.defaultFontStyle = 'normal';
 			Chart.defaults.global.defaultBorderColor = getComputedStyle(document.body).getPropertyValue('--color-one').trim();
@@ -198,13 +208,15 @@ $(document).ready(function(){
 		}
 		
 		$(".toggler").click(function(){
-			var theme = document.documentElement.getAttribute('data-theme');
-			console.log(theme);
-			if (theme === "night") {
-				applyMorning();
-			} else {
+			if (document.documentElement.getAttribute('data-theme') === "day") {
 				applyNight();
+			} else if (document.documentElement.getAttribute('data-theme') === "night") {
+				applyStar();
+			} else if (document.documentElement.getAttribute('data-theme') === "star") {
+				applyDay();
 			}
+			console.log("switched theme");
+			console.log(document.documentElement.getAttribute('data-theme'));
 			Chart.defaults.global.defaultFontColor = getComputedStyle(document.body).getPropertyValue('--font-secondary').trim();
 			
 			// clear previous chart and make it again with updated config

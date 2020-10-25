@@ -561,7 +561,7 @@ a, a:hover {
 	color: var(--color-one);
 }
 
-.fas {
+.fas, .far {
 	cursor: pointer;
 }
 
