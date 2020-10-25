@@ -47,7 +47,7 @@ function makeActivityChart() {
 					},
 					display: true,
 					scaleLabel: {
-						display: true,
+						display: false,
 						labelString: "Day of week",
 					},
 					gridLines: {
@@ -80,7 +80,7 @@ function makeLanguagesChart() {
 		data: {
 			labels: myLanguages.languageLabels,
 			datasets: [{
-				label: 'Language',
+				label: 'Usage',
 				data: myLanguages.languageData,
 				backgroundColor: getComputedStyle(document.body).getPropertyValue('--color-one'),
 				borderColor: getComputedStyle(document.body).getPropertyValue('--color-one'),
@@ -91,7 +91,18 @@ function makeLanguagesChart() {
 		},
 		options: {
 			tooltips: {
-				displayColors: false
+				displayColors: false,
+				callbacks: {
+					label: function(tooltipItem, data) {
+						var label = data.datasets[tooltipItem.datasetIndex].label || '';
+	
+						if (label) {
+							label += ': ';
+						}
+						label += String(tooltipItem.xLabel) + "%";
+						return label;
+					}
+				}
 			},
 			legend: {
 				display: false
@@ -120,7 +131,7 @@ function makeLanguagesChart() {
 						}
 					},
 					scaleLabel: {
-						display: true,
+						display: false,
 						labelString: "Usage",
 					},
 					gridLines: {
@@ -183,7 +194,7 @@ document.onreadystatechange = function() {
 							var d = (new Date(response.data[i].range.date).toLocaleString().split(' ')[0]).replace(",", "");
 							d = d.split("/");
 							d = String(d[2]) + "-" + String(d[0]) + "-" + String(d[1]);
-							d = String(new Date(d));
+							d = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][new Date(d).getDay()];
 							activityLabels.push(d);
 						}
 						myActivity.activityLabels = activityLabels;
@@ -270,7 +281,7 @@ $(document).ready(function(){
 		
 		// initial theme settings before toggle
 		if (window.location.pathname === '/') {
-			$(document).find(".github").attr("src", "https://ghchart.rshah.org/" + String(getComputedStyle(document.body).getPropertyValue('--color-one').replace("#", "").trim()) + "/rubyruins");
+			// $(document).find(".github").attr("src", "https://ghchart.rshah.org/" + String(getComputedStyle(document.body).getPropertyValue('--color-one').replace("#", "").trim()) + "/rubyruins");
 			Chart.defaults.global.defaultFontColor = getComputedStyle(document.body).getPropertyValue('--font-secondary').trim();
 			Chart.defaults.global.defaultFontStyle = 'normal';
 			Chart.defaults.global.defaultBorderColor = getComputedStyle(document.body).getPropertyValue('--color-one').trim();
@@ -294,7 +305,7 @@ $(document).ready(function(){
 			makeLanguagesChart();
 			
 			// change colors of contribution graph
-			$(document).find(".github").attr("src", "https://ghchart.rshah.org/" + String(getComputedStyle(document.body).getPropertyValue('--color-one').replace("#", "").trim()) + "/rubyruins");
+			// $(document).find(".github").attr("src", "https://ghchart.rshah.org/" + String(getComputedStyle(document.body).getPropertyValue('--color-one').replace("#", "").trim()) + "/rubyruins");
 			
 			// change border of activity graph
 			activityChart.data.datasets[0].borderColor[0] = getComputedStyle(document.body).getPropertyValue('--color-one');
