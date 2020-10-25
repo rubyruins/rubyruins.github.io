@@ -138,17 +138,17 @@ function makeLanguagesChart() {
 }
 
 // changing to light theme
-function applyLight() {
-	document.documentElement.setAttribute("data-theme", "light");
-	localStorage.setItem("data-theme", "light");
+function applyMorning() {
+	document.documentElement.setAttribute("data-theme", "morning");
+	localStorage.setItem("data-theme", "morning");
 	$(document).find(".toggler").find(".fas").addClass("fa-sun").removeClass("fa-moon");
 	$(document).find(".navbar").addClass("navbar-light").removeClass("navbar-dark");
 }
 
 // changing to dark theme
-function applyDark() {
-	document.documentElement.setAttribute("data-theme", "dark");
-	localStorage.setItem("data-theme", "dark");
+function applyNight() {
+	document.documentElement.setAttribute("data-theme", "night");
+	localStorage.setItem("data-theme", "night");
 	$(document).find(".toggler").find(".fas").removeClass("fa-sun").addClass("fa-moon");
 	$(document).find(".navbar").removeClass("navbar-light").addClass("navbar-dark");
 }
@@ -156,10 +156,10 @@ function applyDark() {
 document.onreadystatechange = function() { 
 	// load previously saved theme if any
 	var storedTheme = localStorage.getItem("data-theme");
-	if(storedTheme === "dark"){
-		applyDark();
-	} else if ((storedTheme === "light") || (!storedTheme)) {
-		applyLight();
+	if(storedTheme === "night"){
+		applyNight();
+	} else if ((storedTheme === "morning") || (!storedTheme)) {
+		applyMorning();
 	}
 	console.log(storedTheme)
 	if ((window.location.pathname === '/') || (window.location.pathname === '/archive')) {
@@ -195,7 +195,7 @@ document.onreadystatechange = function() {
 				// get language stats
 				$.ajax({
 					type: 'GET',
-					url: 'https://wakatime.com/share/@73a28611-63aa-430b-ac34-67ff9da9d32f/d5e271f0-8ea7-4d6e-a5da-6bb2a78e3fd4.json',
+					url: 'https://wakatime.com/share/@73a28611-63aa-430b-ac34-67ff9da9d32f/d1b94993-f4bd-4550-bd74-fce643c05235.json',
 					dataType: 'jsonp',
 					async: false,
 					success: function(response) {
@@ -280,10 +280,10 @@ $(document).ready(function(){
 		$(".toggler").click(function(){
 			var theme = document.documentElement.getAttribute('data-theme');
 			console.log(theme);
-			if (theme === "dark") {
-				applyLight();
+			if (theme === "night") {
+				applyMorning();
 			} else {
-				applyDark();
+				applyNight();
 			}
 			Chart.defaults.global.defaultFontColor = getComputedStyle(document.body).getPropertyValue('--font-secondary').trim();
 			
