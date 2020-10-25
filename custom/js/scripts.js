@@ -3,75 +3,7 @@
 /* eslint-disable no-undef */
 
 // fetching resources for graphs when page is loading
-myActivity = {};
 myLanguages = {};
-
-// chart 1
-function makeActivityChart() {
-	var activityChart = new Chart(document.getElementById('activityChart'), {
-		type: 'line',
-		data: {
-			labels: myActivity.activityLabels,
-			datasets: [{
-				label: 'Hours spent',
-				data: myActivity.activityData,
-				backgroundColor: 'transparent',
-				borderColor: getComputedStyle(document.body).getPropertyValue('--color-one'),
-				borderWidth: 2.5
-			}]
-		},
-		options: {
-			tooltips: {
-				displayColors: false
-			},
-			hover: {
-				mode: 'point',
-				intersect: true
-			},
-			title: {
-				display: true,
-				text: 'Coding activity this week',
-				fontStyle: 'normal'
-			},
-			legend: {
-				display: false,
-			},
-			scaleShowValues: true,
-			scales: {
-				xAxes: [{
-					bounds: 'ticks',
-					ticks: {
-						autoSkip: false,
-						min: 7,
-						max: 7
-					},
-					display: true,
-					scaleLabel: {
-						display: false,
-						labelString: "Day of week",
-					},
-					gridLines: {
-						display:false
-					}
-				}],
-				yAxes: [{
-					ticks: {
-						beginAtZero: true,
-						autoSkip: false,
-					},
-					display: true,
-					scaleLabel: {
-						display: false,
-						labelString: "Hours per day",
-					},
-					gridLines: {
-						display:false
-					}
-				}]
-			}
-		}
-	});
-}
 
 // chart 2
 function makeLanguagesChart() {
@@ -82,6 +14,7 @@ function makeLanguagesChart() {
 			datasets: [{
 				label: 'Usage',
 				data: myLanguages.languageData,
+				barThickness: 8,
 				backgroundColor: getComputedStyle(document.body).getPropertyValue('--color-one'),
 				borderColor: getComputedStyle(document.body).getPropertyValue('--color-one'),
 				borderWidth: 1,
@@ -141,7 +74,7 @@ function makeLanguagesChart() {
 			},
 			title: {
 				display: true,
-				text: 'Languages used this month',
+				text: 'Top languages used',
 				fontStyle: 'normal'
 			},
 		}
@@ -179,34 +112,10 @@ document.onreadystatechange = function() {
 			document.querySelector(".page-loader").style.visibility = "visible"; 
 			if (window.location.pathname === '/') {
 				Chart.defaults.global.defaultBorderColor = getComputedStyle(document.body).getPropertyValue('--color-one').trim();
-				// get activity stats
-				$.ajax({
-					type: 'GET',
-					url: 'https://wakatime.com/share/@73a28611-63aa-430b-ac34-67ff9da9d32f/2b857162-c165-4543-a59c-ef903fff3b5a.json',
-					dataType: 'jsonp',
-					async: false,
-					success: function(response) {
-						console.log("a success");
-						var activityLabels = [];
-						var activityData = [];
-						for (var i = 0; i < response.data.length; i ++) {
-							activityData.push(parseFloat((response.data[i].grand_total.total_seconds/3600).toFixed(2))); 
-							var d = (new Date(response.data[i].range.date).toLocaleString().split(' ')[0]).replace(",", "");
-							d = d.split("/");
-							d = String(d[2]) + "-" + String(d[0]) + "-" + String(d[1]);
-							d = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][new Date(d).getDay()];
-							activityLabels.push(d);
-						}
-						myActivity.activityLabels = activityLabels;
-						myActivity.activityData = activityData;
-						console.log(myActivity);
-						makeActivityChart();
-					},
-				});
 				// get language stats
 				$.ajax({
 					type: 'GET',
-					url: 'https://wakatime.com/share/@73a28611-63aa-430b-ac34-67ff9da9d32f/d1b94993-f4bd-4550-bd74-fce643c05235.json',
+					url: 'https://wakatime.com/share/@73a28611-63aa-430b-ac34-67ff9da9d32f/6ff18132-5c70-4a8f-9174-2d1ef0b7cab6.json',
 					dataType: 'jsonp',
 					async: false,
 					success: function(response) {
@@ -299,23 +208,14 @@ $(document).ready(function(){
 			Chart.defaults.global.defaultFontColor = getComputedStyle(document.body).getPropertyValue('--font-secondary').trim();
 			
 			// clear previous chart and make it again with updated config
-			document.getElementById('chart-1').innerHTML = '<canvas id="activityChart"></canvas>'
 			document.getElementById('chart-2').innerHTML = '<canvas id="languagesChart"></canvas>'
-			makeActivityChart();
 			makeLanguagesChart();
-			
-			// change colors of contribution graph
-			// $(document).find(".github").attr("src", "https://ghchart.rshah.org/" + String(getComputedStyle(document.body).getPropertyValue('--color-one').replace("#", "").trim()) + "/rubyruins");
-			
-			// change border of activity graph
-			activityChart.data.datasets[0].borderColor[0] = getComputedStyle(document.body).getPropertyValue('--color-one');
 			
 			// change font colors of all graph
 			Chart.defaults.global.defaultFontColor = getComputedStyle(document.body).getPropertyValue('--font-secondary').trim();
 			
 			// finally update charts
-			activityChart.update();
-			languagesChart.update();
+			// languagesChart.update();
 		});
 		
 		
