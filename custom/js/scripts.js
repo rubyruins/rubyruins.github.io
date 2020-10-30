@@ -102,7 +102,7 @@ function applyStar() {
 	document.documentElement.setAttribute("data-theme", "star");
 	localStorage.setItem("data-theme", "star");
 	$(document).find(".toggler").find(".far").removeClass("fa-moon").removeClass("fa-sun").addClass("fa-star");
-	// $(document).find(".navbar").removeClass("navbar-light").addClass("navbar-dark");
+	$(document).find(".navbar").removeClass("navbar-light").addClass("navbar-dark");
 }
 
 document.onreadystatechange = function() { 
@@ -172,7 +172,7 @@ $(document).ready(function(){
 	// typing effect
 	function newTyped(){}$(function(){
 		$("#typed").typed({
-			strings: ["music","art","words"],
+			strings: ["music.","art.","words."],
 			typeSpeed:90,
 			backDelay:700,
 			contentType:"html",
