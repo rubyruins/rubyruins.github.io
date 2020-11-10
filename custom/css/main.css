@@ -458,11 +458,11 @@ footer {
 		display: block;
 	}
 	.section {
-		padding: 1rem;
-		margin: 1rem;
+		padding: 0.5rem;
+		margin: 0.5rem;
 	}
 	.content {
-		margin: 5rem 1rem 0 1rem;	
+		margin: 2rem 1rem 0 1rem;	
 		padding-left: 1rem;
 		padding-right: 1rem;
 	}
