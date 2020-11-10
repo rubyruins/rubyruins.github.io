@@ -194,9 +194,9 @@ $(document).ready(function(){
 		
 		// Toggle plus minus icon on show hide of collapse element
 		$(".collapse").on('show.bs.collapse', function(){
-			$(this).prev(".collapse-heading").find(".far").removeClass("fa-angle-down").addClass("fa-angle-up");
+			$(this).prev(".collapse-heading").find(".fas").removeClass("fa-angle-down").addClass("fa-angle-up");
 		}).on('hide.bs.collapse', function(){
-			$(this).prev(".collapse-heading").find(".far").removeClass("fa-angle-up").addClass("fa-angle-down");
+			$(this).prev(".collapse-heading").find(".fas").removeClass("fa-angle-up").addClass("fa-angle-down");
 		});
 		
 		// initial theme settings before toggle
