@@ -310,6 +310,15 @@ nav i {
 	color: var(--font-primary);
 }
 
+li {
+	list-style: none;
+	margin-bottom: 5px !important;
+}
+
+ul {
+	padding-left: 0 !important;
+}
+
 /* tags */
 
 .tag {
