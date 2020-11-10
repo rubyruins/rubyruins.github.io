@@ -188,7 +188,7 @@ $(document).ready(function(){
 		
 		// Toggle icon for collapse element which is open by default
 		$(".collapse.show").each(function(){
-			$(this).prev(".collapse-heading").find(".far").addClass("fa-angle-up").removeClass("fa-angle-down");
+			$(this).prev(".collapse-heading").find(".fas").addClass("fa-angle-up").removeClass("fa-angle-down");
 		});		
 		
 		
