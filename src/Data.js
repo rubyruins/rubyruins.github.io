@@ -259,7 +259,7 @@ const experience = [
 		id: "i5"
 	},
 	{
-		title: "Machine Learning Intern | RIIDL Somaiya Vidyavihar",
+		title: "Data Science Intern | RIIDL Somaiya Vidyavihar",
 		date: "June 2020 - Present",
 		content: ["Worked on COMRADE, an ML-based informed intervention for crowdsourcing based optimisation of medical resources attending demand equalisation for COVID 19 treatment.", "Responsible for cleaning, processing and analysing data, drawing important inferences and presenting findings. Designed dashboards and graphs for the web application."],
 		tech: "Pandas, Numpy, Plotly Express and Flask.",
