@@ -251,11 +251,11 @@ const experience = [
 	},
 	{
 		title: "Web Development Team | Orion Racing India",
-		date: "August 2020 - Present",
+		date: "August 2020 - February 2021",
 		content: ["Designed and developed the official website for Orion Racing India.", "Orion Racing India is a student run, non-profit racing team based in K.J.Somaiya College Of Engineering, Vidyavihar, Mumbai. They develop, design and manufacture a formula style car to take part in International Design Competitions organized by Formula SAE, like Formula Student Germany."],
 		tech: "HTML, CSS, Javascript and PHP.",
 		github: "",
-		url: "",
+		url: "http://www.orion-racing.com/",
 		id: "i5"
 	},
 	{
