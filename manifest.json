@@ -19,7 +19,8 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "start_url": "https://rubyruins.github.io/",
+  "scope": "https://rubyruins.github.io/",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff",
