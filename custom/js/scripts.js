@@ -115,8 +115,8 @@ document.onreadystatechange = function() {
 	} else if (storedTheme === "star") {
 		applyStar();
 	}
-	// console.log("applied theme");
-	// console.log(storedTheme);
+	console.log("applied theme");
+	console.log(storedTheme);
 	if ((window.location.pathname === '/') || (window.location.pathname === '/archive')) {
 		if ((document.readyState !== "complete")) { 
 			document.querySelector("body").style.visibility = "hidden"; 
@@ -130,7 +130,7 @@ document.onreadystatechange = function() {
 					dataType: 'jsonp',
 					async: false,
 					success: function(response) {
-						// console.log("l success");
+						console.log("l success");
 						var languageLabels = [];
 						var languageData = [];
 						var l;
@@ -145,7 +145,7 @@ document.onreadystatechange = function() {
 						}
 						myLanguages.languageLabels = languageLabels;
 						myLanguages.languageData = languageData;
-						// console.log(myLanguages);
+						console.log(myLanguages);
 						makeLanguagesChart();
 					},
 				});
@@ -165,7 +165,7 @@ $(document).ready(function(){
 		$('html, body').animate({
 			scrollTop: parseInt($(targetHref).offset().top - 50)
 		}, 500);
-		// console.log($(targetHref).offset().top);
+		console.log($(targetHref).offset().top);
 		e.preventDefault();
 	});
 	
@@ -215,8 +215,8 @@ $(document).ready(function(){
 			} else if (document.documentElement.getAttribute('data-theme') === "star") {
 				applyDay();
 			}
-			// console.log("switched theme");
-			// console.log(document.documentElement.getAttribute('data-theme'));
+			console.log("switched theme");
+			console.log(document.documentElement.getAttribute('data-theme'));
 			Chart.defaults.global.defaultFontColor = getComputedStyle(document.body).getPropertyValue('--font-secondary').trim();
 			
 			// clear previous chart and make it again with updated config
