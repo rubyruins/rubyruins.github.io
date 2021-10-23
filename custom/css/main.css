@@ -281,10 +281,28 @@ nav i {
 
 .custom-card {
 	background-color: var(--background-primary);
+	box-shadow: 10px 10px 30px var(--background-secondary);
+	
+}
+
+.custom-card:hover {
+	animation: shiftcard 0.5s ease-out;
+}
+
+.custom-card i {
+	color: var(--font-primary);
+}
+
+.custom-project-card {
 	padding: 1.5rem;
 	margin-bottom: 1rem;
-	box-shadow: 10px 10px 30px var(--background-secondary);
 	min-height: 15rem;
+}
+
+.custom-os-card {
+	padding: 1.5rem;
+	margin-bottom: 1rem;
+	min-height: 10rem;
 }
 
 @keyframes shiftcard {
@@ -300,14 +318,6 @@ nav i {
 		transform: translateX(0px);
 		transform: translateY(0px);
 	}
-}
-
-.custom-card:hover {
-	animation: shiftcard 0.5s ease-out;
-}
-
-.custom-card i {
-	color: var(--font-primary);
 }
 
 li {
