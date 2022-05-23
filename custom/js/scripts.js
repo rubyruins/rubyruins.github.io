@@ -115,18 +115,12 @@ document.onreadystatechange = function() {
 	} else if (storedTheme === "star") {
 		applyStar();
 	}
-	console.log("applied theme");
-	console.log(storedTheme);
+	// console.log("applied theme");
+	// console.log(storedTheme);
 	if ((window.location.pathname === '/') || (window.location.pathname === '/archive')) {
-		console.log(document.readyState);
-		console.log(10000)
 		if ((document.readyState !== "complete")) { 
-			console.log("if before");
-			// console.log(document.querySelector("body").style.visibility, document.querySelector(".page-loader").style.visibility);
 			document.querySelector("body").style.visibility = "hidden"; 
 			document.querySelector(".page-loader").style.visibility = "visible"; 
-			console.log("if after");
-			console.log(document.querySelector("body").style.visibility, document.querySelector(".page-loader").style.visibility);
 			if (window.location.pathname === '/') {
 				Chart.defaults.global.defaultBorderColor = getComputedStyle(document.body).getPropertyValue('--color-one').trim();
 				// get language stats
@@ -157,12 +151,8 @@ document.onreadystatechange = function() {
 				});
 			}
 		} else { 
-			console.log("else before");
-			// console.log(document.querySelector("body").style.visibility, document.querySelector(".page-loader").style.visibility);
 			document.querySelector(".page-loader").style.display = "none"; 
 			document.querySelector("body").style.visibility = "visible"; 
-			console.log("else after");
-			console.log(document.querySelector("body").style.visibility, document.querySelector(".page-loader").style.visibility);
 		} 
 	}
 }; 
