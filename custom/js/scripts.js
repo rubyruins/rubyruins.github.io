@@ -122,7 +122,7 @@ document.onreadystatechange = function() {
 		console.log(10000)
 		if ((document.readyState !== "complete")) { 
 			console.log("if before");
-			console.log(document.querySelector("body").style.visibility, document.querySelector(".page-loader").style.visibility);
+			// console.log(document.querySelector("body").style.visibility, document.querySelector(".page-loader").style.visibility);
 			document.querySelector("body").style.visibility = "hidden"; 
 			document.querySelector(".page-loader").style.visibility = "visible"; 
 			console.log("if after");
@@ -158,7 +158,7 @@ document.onreadystatechange = function() {
 			}
 		} else { 
 			console.log("else before");
-			console.log(document.querySelector("body").style.visibility, document.querySelector(".page-loader").style.visibility);
+			// console.log(document.querySelector("body").style.visibility, document.querySelector(".page-loader").style.visibility);
 			document.querySelector(".page-loader").style.display = "none"; 
 			document.querySelector("body").style.visibility = "visible"; 
 			console.log("else after");
