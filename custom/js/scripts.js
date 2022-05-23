@@ -108,19 +108,19 @@ function applyStar() {
 document.onreadystatechange = function() { 
 	// load previously saved theme if any
 	var storedTheme = localStorage.getItem("data-theme");
-	// if ((storedTheme === "day") || (!storedTheme) || (storedTheme === "light")) {
-	// 	applyDay();
-	// } else if (storedTheme === "night") {
-	// 	applyNight();
-	// } else if (storedTheme === "star") {
-	// 	applyStar();
-	// }
+	if ((storedTheme === "day") || (!storedTheme) || (storedTheme === "light")) {
+		applyDay();
+	} else if (storedTheme === "night") {
+		applyNight();
+	} else if (storedTheme === "star") {
+		applyStar();
+	}
 	console.log("applied theme");
 	console.log(storedTheme);
 	if ((window.location.pathname === '/') || (window.location.pathname === '/archive')) {
 		if ((document.readyState !== "complete")) { 
 			document.querySelector("body").style.visibility = "hidden"; 
-			document.querySelector(".page-loader").style.visibility = "visible"; 
+			// document.querySelector(".page-loader").style.visibility = "visible"; 
 			if (window.location.pathname === '/') {
 				Chart.defaults.global.defaultBorderColor = getComputedStyle(document.body).getPropertyValue('--color-one').trim();
 				// get language stats
@@ -151,7 +151,7 @@ document.onreadystatechange = function() {
 				});
 			}
 		} else { 
-			document.querySelector(".page-loader").style.display = "none"; 
+			// document.querySelector(".page-loader").style.display = "none"; 
 			document.querySelector("body").style.visibility = "visible"; 
 		} 
 	}
