@@ -159,7 +159,7 @@ document.onreadystatechange = function() {
 		} else { 
 			console.log("else before");
 			console.log(document.querySelector("body").style.visibility, document.querySelector(".page-loader").style.visibility);
-			document.querySelector(".page-loader").style.display = "hidden"; 
+			document.querySelector(".page-loader").style.display = "none"; 
 			document.querySelector("body").style.visibility = "visible"; 
 			console.log("else after");
 			console.log(document.querySelector("body").style.visibility, document.querySelector(".page-loader").style.visibility);
