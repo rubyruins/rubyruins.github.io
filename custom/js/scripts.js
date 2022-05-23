@@ -108,15 +108,15 @@ function applyStar() {
 document.onreadystatechange = function() { 
 	// load previously saved theme if any
 	var storedTheme = localStorage.getItem("data-theme");
-	if ((storedTheme === "day") || (!storedTheme) || (storedTheme === "light")) {
-		applyDay();
-	} else if (storedTheme === "night") {
-		applyNight();
-	} else if (storedTheme === "star") {
-		applyStar();
-	}
-	// console.log("applied theme");
-	// console.log(storedTheme);
+	// if ((storedTheme === "day") || (!storedTheme) || (storedTheme === "light")) {
+	// 	applyDay();
+	// } else if (storedTheme === "night") {
+	// 	applyNight();
+	// } else if (storedTheme === "star") {
+	// 	applyStar();
+	// }
+	console.log("applied theme");
+	console.log(storedTheme);
 	if ((window.location.pathname === '/') || (window.location.pathname === '/archive')) {
 		if ((document.readyState !== "complete")) { 
 			document.querySelector("body").style.visibility = "hidden"; 
