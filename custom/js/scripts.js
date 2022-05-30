@@ -231,40 +231,42 @@ $(document).ready(function(){
 		});
 		
 		
-		// initialise isotope
-		var iso = new Isotope( '.isotopeGrid', {
-			itemSelector: '.element-item',
-			layoutMode: 'fitRows'
-		});
-		
-		
-		// filter functions
-		var filterFns = {};
-		
-		
-		// bind filter button click
-		var filtersElem = document.querySelector('.filters-button-group');
-		if (filtersElem) {
-			filtersElem.addEventListener('click', function(event) {
-				if (!matchesSelector( event.target, 'button' ) ) {
-					return;
-				}
-				var filterValue = event.target.getAttribute('data-filter');
-				// use matching filter function
-				// change classes on clicking the button
-				filterValue = filterFns[ filterValue ] || filterValue;
-				iso.arrange({ filter: filterValue });
-				var allButtons = $(document).find('.filter-buttons');
-				for (var i = 0; i < allButtons.length; i++) {
-					if (allButtons[i].getAttribute("data-filter") === filterValue) {
-						$(allButtons[i]).addClass("filter-buttons-click");
-						$(allButtons[i]).addClass("is-checked");
-					} else {
-						$(allButtons[i]).removeClass("filter-buttons-click");
-						$(allButtons[i]).removeClass("is-checked");
-					}
-				}
+		if (window.location.pathname === '/archive') {
+		// initialise isotope on archive page
+			var iso = new Isotope( '.isotopeGrid', {
+				itemSelector: '.element-item',
+				layoutMode: 'fitRows'
 			});
+			
+			
+			// filter functions
+			var filterFns = {};
+			
+			
+			// bind filter button click
+			var filtersElem = document.querySelector('.filters-button-group');
+			if (filtersElem) {
+				filtersElem.addEventListener('click', function(event) {
+					if (!matchesSelector( event.target, 'button' ) ) {
+						return;
+					}
+					var filterValue = event.target.getAttribute('data-filter');
+					// use matching filter function
+					// change classes on clicking the button
+					filterValue = filterFns[ filterValue ] || filterValue;
+					iso.arrange({ filter: filterValue });
+					var allButtons = $(document).find('.filter-buttons');
+					for (var i = 0; i < allButtons.length; i++) {
+						if (allButtons[i].getAttribute("data-filter") === filterValue) {
+							$(allButtons[i]).addClass("filter-buttons-click");
+							$(allButtons[i]).addClass("is-checked");
+						} else {
+							$(allButtons[i]).removeClass("filter-buttons-click");
+							$(allButtons[i]).removeClass("is-checked");
+						}
+					}
+				});
+			}
 		}
 	});
 	
