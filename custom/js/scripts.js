@@ -151,7 +151,7 @@ document.onreadystatechange = function() {
 				});
 			}
 		} else { 
-			document.querySelector(".page-loader").style.display = "none"; 
+			document.querySelector(".page-loader").style.display = "hidden"; 
 			document.querySelector("body").style.visibility = "visible"; 
 		} 
 	}
