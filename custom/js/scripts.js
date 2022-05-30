@@ -105,6 +105,58 @@ function applyStar() {
 	$(document).find(".navbar").removeClass("navbar-light").addClass("navbar-dark");
 }
 
+document.onreadystatechange = function() { 
+	// load previously saved theme if any
+	var storedTheme = localStorage.getItem("data-theme");
+	if ((storedTheme === "day") || (!storedTheme) || (storedTheme === "light")) {
+		applyDay();
+	} else if (storedTheme === "night") {
+		applyNight();
+	} else if (storedTheme === "star") {
+		applyStar();
+	}
+	// console.log("applied theme");
+	// console.log(storedTheme);
+	if ((window.location.pathname === '/') || (window.location.pathname === '/archive')) {
+		if ((document.readyState !== "complete")) { 
+			document.querySelector("body").style.visibility = "hidden"; 
+			document.querySelector(".page-loader").style.visibility = "visible"; 
+			if (window.location.pathname === '/') {
+				Chart.defaults.global.defaultBorderColor = getComputedStyle(document.body).getPropertyValue('--color-one').trim();
+				// get language stats
+				$.ajax({
+					type: 'GET',
+					url: 'https://wakatime.com/share/@73a28611-63aa-430b-ac34-67ff9da9d32f/6ff18132-5c70-4a8f-9174-2d1ef0b7cab6.json',
+					dataType: 'jsonp',
+					async: false,
+					success: function(response) {
+						// console.log("l success");
+						var languageLabels = [];
+						var languageData = [];
+						var l;
+						if (response.data.length > 5) {
+							l = 5
+						} else {
+							l = response.data.length;
+						}
+						for (var i = 0; i < l; i ++) {
+							languageLabels.push(response.data[i].name); 
+							languageData.push(response.data[i].percent);
+						}
+						myLanguages.languageLabels = languageLabels;
+						myLanguages.languageData = languageData;
+						// console.log(myLanguages);
+						makeLanguagesChart();
+					},
+				});
+			}
+		} else { 
+			document.querySelector(".page-loader").style.display = "none"; 
+			document.querySelector("body").style.visibility = "visible"; 
+		} 
+	}
+}; 
+
 $(document).ready(function(){
 	
 	// smooth scroll navbar
@@ -214,76 +266,14 @@ $(document).ready(function(){
 				}
 			});
 		}
-});
+	});
 	
 	
-// floating navbar
-$(window).scroll(function() {
-	if ($(window).scrollTop() > 100) {
-		$('nav').addClass('floatingNav', 1000);
-	} else {
-		$('nav').removeClass('floatingNav', 1000);
-	}
-});
-
-document.onreadystatechange = function() { 
-	// load previously saved theme if any
-	var storedTheme = localStorage.getItem("data-theme");
-	if ((storedTheme === "day") || (!storedTheme) || (storedTheme === "light")) {
-		applyDay();
-	} else if (storedTheme === "night") {
-		applyNight();
-	} else if (storedTheme === "star") {
-		applyStar();
-	}
-	console.log("applied theme");
-	console.log(storedTheme);
-	if ((window.location.pathname === '/') || (window.location.pathname === '/archive')) {
-		console.log(document.readyState);
-		console.log(10000)
-		if ((document.readyState !== "complete")) { 
-			console.log("if before");
-			// console.log(document.querySelector("body").style.visibility, document.querySelector(".page-loader").style.visibility);
-			document.querySelector("body").style.visibility = "hidden"; 
-			document.querySelector(".page-loader").style.visibility = "visible"; 
-			console.log("if after");
-			console.log(document.querySelector("body").style.visibility, document.querySelector(".page-loader").style.visibility);
-			if (window.location.pathname === '/') {
-				Chart.defaults.global.defaultBorderColor = getComputedStyle(document.body).getPropertyValue('--color-one').trim();
-				// get language stats
-				$.ajax({
-					type: 'GET',
-					url: 'https://wakatime.com/share/@73a28611-63aa-430b-ac34-67ff9da9d32f/6ff18132-5c70-4a8f-9174-2d1ef0b7cab6.json',
-					dataType: 'jsonp',
-					async: false,
-					success: function(response) {
-						// console.log("l success");
-						var languageLabels = [];
-						var languageData = [];
-						var l;
-						if (response.data.length > 5) {
-							l = 5
-						} else {
-							l = response.data.length;
-						}
-						for (var i = 0; i < l; i ++) {
-							languageLabels.push(response.data[i].name); 
-							languageData.push(response.data[i].percent);
-						}
-						myLanguages.languageLabels = languageLabels;
-						myLanguages.languageData = languageData;
-						// console.log(myLanguages);
-						makeLanguagesChart();
-					},
-				});
-			}
-		} else { 
-			// console.log("else before");
-			// console.log(document.querySelector("body").style.visibility, document.querySelector(".page-loader").style.visibility);
-			document.querySelector(".page-loader").style.display = "none"; 
-			document.querySelector("body").style.visibility = "visible"; 
-			console.log("else after");
-			console.log(document.querySelector("body").style.visibility, document.querySelector(".page-loader").style.visibility);
-		} 
-	}
-}; 
+	// floating navbar
+	$(window).scroll(function() {
+		if ($(window).scrollTop() > 100) {
+			$('nav').addClass('floatingNav', 1000);
+		} else {
+			$('nav').removeClass('floatingNav', 1000);
+		}
+	});
