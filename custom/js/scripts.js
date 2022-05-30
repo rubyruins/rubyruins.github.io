@@ -232,8 +232,6 @@ $(document).ready(function(){
 	});
 		
 	if (window.location.pathname === '/archive') {
-		console.log("I should be called in archive")
-		console.log(window.location.pathname)
 
 		// initialise isotope
 		var iso = new Isotope( '.isotopeGrid', {
