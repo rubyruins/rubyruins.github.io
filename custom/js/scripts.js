@@ -183,65 +183,69 @@ $(document).ready(function(){
 			$(".reset").click(function(){
 				$("#typed").typed("reset")
 			})
-		});
-		
-		
-		// Toggle icon for collapse element which is open by default
-		$(".collapse.show").each(function(){
-			$(this).prev(".collapse-heading").find(".fas").addClass("fa-angle-up").removeClass("fa-angle-down");
-		});		
-		
-		
-		// Toggle plus minus icon on show hide of collapse element
-		$(".collapse").on('show.bs.collapse', function(){
-			$(this).prev(".collapse-heading").find(".fas").removeClass("fa-angle-down").addClass("fa-angle-up");
-		}).on('hide.bs.collapse', function(){
-			$(this).prev(".collapse-heading").find(".fas").removeClass("fa-angle-up").addClass("fa-angle-down");
-		});
-		
-		// initial theme settings before toggle
-		if (window.location.pathname === '/') {
-			Chart.defaults.global.defaultFontColor = getComputedStyle(document.body).getPropertyValue('--font-secondary').trim();
-			Chart.defaults.global.defaultFontStyle = 'normal';
-			Chart.defaults.global.defaultBorderColor = getComputedStyle(document.body).getPropertyValue('--color-one').trim();
-			Chart.defaults.global.defaultFontSize = 10;
 		}
-		
-		$(".toggler").click(function(){
-			if (document.documentElement.getAttribute('data-theme') === "day") {
-				applyNight();
-			} else if (document.documentElement.getAttribute('data-theme') === "night") {
-				applyStar();
-			} else if (document.documentElement.getAttribute('data-theme') === "star") {
-				applyDay();
-			}
-			// console.log("switched theme");
-			// console.log(document.documentElement.getAttribute('data-theme'));
-			Chart.defaults.global.defaultFontColor = getComputedStyle(document.body).getPropertyValue('--font-secondary').trim();
-			
-			// clear previous chart and make it again with updated config
-			document.getElementById('chart-2').innerHTML = '<canvas id="languagesChart"></canvas>'
-			makeLanguagesChart();
-			
-			// change font colors of all graph
-			Chart.defaults.global.defaultFontColor = getComputedStyle(document.body).getPropertyValue('--font-secondary').trim();
-			
-			// finally update charts
-			// languagesChart.update();
-		});
+	);
 		
 		
+	// Toggle icon for collapse element which is open by default
+	$(".collapse.show").each(function(){
+		$(this).prev(".collapse-heading").find(".fas").addClass("fa-angle-up").removeClass("fa-angle-down");
+	});		
+		
+		
+	// Toggle plus minus icon on show hide of collapse element
+	$(".collapse").on('show.bs.collapse', function(){
+		$(this).prev(".collapse-heading").find(".fas").removeClass("fa-angle-down").addClass("fa-angle-up");
+	}).on('hide.bs.collapse', function(){
+		$(this).prev(".collapse-heading").find(".fas").removeClass("fa-angle-up").addClass("fa-angle-down");
+	});
+		
+	// initial theme settings before toggle
+	if (window.location.pathname === '/') {
+		Chart.defaults.global.defaultFontColor = getComputedStyle(document.body).getPropertyValue('--font-secondary').trim();
+		Chart.defaults.global.defaultFontStyle = 'normal';
+		Chart.defaults.global.defaultBorderColor = getComputedStyle(document.body).getPropertyValue('--color-one').trim();
+		Chart.defaults.global.defaultFontSize = 10;
+	}
+		
+	$(".toggler").click(function(){
+		if (document.documentElement.getAttribute('data-theme') === "day") {
+			applyNight();
+		} else if (document.documentElement.getAttribute('data-theme') === "night") {
+			applyStar();
+		} else if (document.documentElement.getAttribute('data-theme') === "star") {
+			applyDay();
+		}
+		// console.log("switched theme");
+		// console.log(document.documentElement.getAttribute('data-theme'));
+		Chart.defaults.global.defaultFontColor = getComputedStyle(document.body).getPropertyValue('--font-secondary').trim();
+		
+		// clear previous chart and make it again with updated config
+		document.getElementById('chart-2').innerHTML = '<canvas id="languagesChart"></canvas>'
+		makeLanguagesChart();
+		
+		// change font colors of all graph
+		Chart.defaults.global.defaultFontColor = getComputedStyle(document.body).getPropertyValue('--font-secondary').trim();
+		
+		// finally update charts
+		// languagesChart.update();
+	});
+		
+	if (window.location.pathname === '/archive') {
+		console.log("I should be called in archive")
+		console.log(window.location.pathname)
+
 		// initialise isotope
 		var iso = new Isotope( '.isotopeGrid', {
 			itemSelector: '.element-item',
 			layoutMode: 'fitRows'
 		});
-		
-		
+			
+			
 		// filter functions
 		var filterFns = {};
-		
-		
+			
+			
 		// bind filter button click
 		var filtersElem = document.querySelector('.filters-button-group');
 		if (filtersElem) {
@@ -266,14 +270,17 @@ $(document).ready(function(){
 				}
 			});
 		}
-	});
+
+	}
+	
+});
 	
 	
-	// floating navbar
-	$(window).scroll(function() {
-		if ($(window).scrollTop() > 100) {
-			$('nav').addClass('floatingNav', 1000);
-		} else {
-			$('nav').removeClass('floatingNav', 1000);
-		}
-	});
+// floating navbar
+$(window).scroll(function() {
+	if ($(window).scrollTop() > 100) {
+		$('nav').addClass('floatingNav', 1000);
+	} else {
+		$('nav').removeClass('floatingNav', 1000);
+	}
+});
