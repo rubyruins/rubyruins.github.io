@@ -123,10 +123,12 @@ document.onreadystatechange = function() {
 			document.querySelector(".page-loader").style.visibility = "visible"; 
 			if (window.location.pathname === '/') {
 				Chart.defaults.global.defaultBorderColor = getComputedStyle(document.body).getPropertyValue('--color-one').trim();
+				numLangs = 4; // adjust the number of languages shown in the chart
 				// get language stats
 				$.ajax({
 					type: 'GET',
-					url: 'https://wakatime.com/share/@73a28611-63aa-430b-ac34-67ff9da9d32f/6ff18132-5c70-4a8f-9174-2d1ef0b7cab6.json',
+					// url: 'https://wakatime.com/share/@73a28611-63aa-430b-ac34-67ff9da9d32f/6ff18132-5c70-4a8f-9174-2d1ef0b7cab6.json',
+					url: 'https://wakatime.com/share/@73a28611-63aa-430b-ac34-67ff9da9d32f/43dd2391-f5e8-4368-958b-4642f7b52997.json',
 					dataType: 'jsonp',
 					async: false,
 					success: function(response) {
@@ -134,8 +136,8 @@ document.onreadystatechange = function() {
 						var languageLabels = [];
 						var languageData = [];
 						var l;
-						if (response.data.length > 5) {
-							l = 5
+						if (response.data.length > numLangs) {
+							l = numLangs
 						} else {
 							l = response.data.length;
 						}
@@ -145,8 +147,7 @@ document.onreadystatechange = function() {
 						}
 						myLanguages.languageLabels = languageLabels;
 						myLanguages.languageData = languageData;
-						// console.log(myLanguages);
-						makeLanguagesChart();
+						// makeLanguagesChart();
 					},
 				});
 			}
@@ -222,7 +223,7 @@ $(document).ready(function(){
 		
 		// clear previous chart and make it again with updated config
 		document.getElementById('chart-2').innerHTML = '<canvas id="languagesChart"></canvas>'
-		makeLanguagesChart();
+		// makeLanguagesChart();
 		
 		// change font colors of all graph
 		Chart.defaults.global.defaultFontColor = getComputedStyle(document.body).getPropertyValue('--font-secondary').trim();
