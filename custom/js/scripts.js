@@ -122,34 +122,34 @@ document.onreadystatechange = function() {
 			document.querySelector("body").style.visibility = "hidden"; 
 			document.querySelector(".page-loader").style.visibility = "visible"; 
 			if (window.location.pathname === '/') {
-				Chart.defaults.global.defaultBorderColor = getComputedStyle(document.body).getPropertyValue('--color-one').trim();
-				numLangs = 4; // adjust the number of languages shown in the chart
-				// get language stats
-				$.ajax({
-					type: 'GET',
-					// url: 'https://wakatime.com/share/@73a28611-63aa-430b-ac34-67ff9da9d32f/6ff18132-5c70-4a8f-9174-2d1ef0b7cab6.json',
-					url: 'https://wakatime.com/share/@73a28611-63aa-430b-ac34-67ff9da9d32f/43dd2391-f5e8-4368-958b-4642f7b52997.json',
-					dataType: 'jsonp',
-					async: false,
-					success: function(response) {
-						// console.log("l success");
-						var languageLabels = [];
-						var languageData = [];
-						var l;
-						if (response.data.length > numLangs) {
-							l = numLangs
-						} else {
-							l = response.data.length;
-						}
-						for (var i = 0; i < l; i ++) {
-							languageLabels.push(response.data[i].name); 
-							languageData.push(response.data[i].percent);
-						}
-						myLanguages.languageLabels = languageLabels;
-						myLanguages.languageData = languageData;
-						// makeLanguagesChart();
-					},
-				});
+				// Chart.defaults.global.defaultBorderColor = getComputedStyle(document.body).getPropertyValue('--color-one').trim();
+				// numLangs = 4; // adjust the number of languages shown in the chart
+				// // get language stats
+				// $.ajax({
+				// 	type: 'GET',
+				// 	// url: 'https://wakatime.com/share/@73a28611-63aa-430b-ac34-67ff9da9d32f/6ff18132-5c70-4a8f-9174-2d1ef0b7cab6.json',
+				// 	url: 'https://wakatime.com/share/@73a28611-63aa-430b-ac34-67ff9da9d32f/43dd2391-f5e8-4368-958b-4642f7b52997.json',
+				// 	dataType: 'jsonp',
+				// 	async: false,
+				// 	success: function(response) {
+				// 		// console.log("l success");
+				// 		var languageLabels = [];
+				// 		var languageData = [];
+				// 		var l;
+				// 		if (response.data.length > numLangs) {
+				// 			l = numLangs
+				// 		} else {
+				// 			l = response.data.length;
+				// 		}
+				// 		for (var i = 0; i < l; i ++) {
+				// 			languageLabels.push(response.data[i].name); 
+				// 			languageData.push(response.data[i].percent);
+				// 		}
+				// 		myLanguages.languageLabels = languageLabels;
+				// 		myLanguages.languageData = languageData;
+				//		makeLanguagesChart();
+				// 	},
+				// });
 			}
 		} else { 
 			document.querySelector(".page-loader").style.display = "none"; 
